@@ -13,67 +13,82 @@ const LINKS = [
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
-  const [open, setOpen]       = useState(false);
-  const [solid, setSolid]     = useState(false);
+  const [open, setOpen]   = useState(false);
+  const [solid, setSolid] = useState(false);
 
   useEffect(() => {
-    const fn = () => setSolid(window.scrollY > 32);
+    const fn = () => setSolid(window.scrollY > 40);
     window.addEventListener('scroll', fn, { passive: true });
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-      solid ? 'bg-navy-900/96 backdrop-blur-md border-b border-line' : ''
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex items-center justify-between h-[68px]">
+    <header style={{
+      position: 'fixed', inset: '0 0 auto 0', zIndex: 50,
+      transition: 'background 0.3s, border-color 0.3s',
+      background: solid ? 'rgba(9,21,36,0.95)' : 'transparent',
+      backdropFilter: solid ? 'blur(12px)' : 'none',
+      borderBottom: solid ? '1px solid #1C3050' : '1px solid transparent',
+    }}>
+      <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
 
-          {/* Logo */}
-          <a href="#" className="shrink-0">
-            <span className="font-serif text-[1.35rem] font-semibold text-white tracking-tight">
-              SoundMind<span className="text-gold">AI</span>
-            </span>
-          </a>
+        {/* Logo */}
+        <a href="#" style={{ textDecoration: 'none', flexShrink: 0 }}>
+          <span style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 20,
+            fontWeight: 600,
+            color: '#fff',
+            letterSpacing: '-0.01em',
+          }}>
+            SoundMind<span style={{ color: '#B5904A' }}>AI</span>
+          </span>
+        </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-9">
-            {LINKS.map(l => (
-              <a key={l.label} href={l.href}
-                className="text-[0.8125rem] font-medium text-muted hover:text-white transition-colors duration-200 tracking-wide">
-                {l.label}
-              </a>
-            ))}
-          </nav>
+        {/* Desktop nav */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 36 }} className="hidden md:flex">
+          {LINKS.map(l => (
+            <a key={l.label} href={l.href} style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 13,
+              fontWeight: 500,
+              color: '#64748B',
+              textDecoration: 'none',
+              letterSpacing: '0.01em',
+              transition: 'color 0.2s',
+            }}
+            onMouseOver={e => (e.currentTarget.style.color = '#fff')}
+            onMouseOut={e => (e.currentTarget.style.color = '#64748B')}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center">
-            <button onClick={onContactClick}
-              className="text-[0.8125rem] font-semibold px-5 py-2 rounded bg-gold text-ink
-                         hover:bg-gold-light transition-colors duration-200">
-              Book a Call
-            </button>
-          </div>
-
-          {/* Mobile */}
-          <button className="md:hidden p-2 text-muted hover:text-white"
-            onClick={() => setOpen(!open)} aria-label="Menu">
-            {open ? <X size={20} /> : <Menu size={20} />}
+        {/* CTA */}
+        <div className="hidden md:flex">
+          <button onClick={onContactClick} className="btn-primary" style={{ padding: '9px 22px', fontSize: 13 }}>
+            Book a Call
           </button>
         </div>
+
+        {/* Mobile toggle */}
+        <button onClick={() => setOpen(!open)} className="md:hidden"
+          style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: 8 }}>
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
 
+      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-navy-900 border-t border-line">
-          <div className="max-w-7xl mx-auto px-6 py-6 space-y-5">
+        <div style={{ background: '#091524', borderTop: '1px solid #1C3050' }}>
+          <div className="wrap" style={{ paddingTop: 20, paddingBottom: 24, display: 'flex', flexDirection: 'column', gap: 18 }}>
             {LINKS.map(l => (
-              <a key={l.label} href={l.href} onClick={() => setOpen(false)}
-                className="block text-sm font-medium text-slate hover:text-white transition-colors">
-                {l.label}
-              </a>
+              <a key={l.label} href={l.href} onClick={() => setOpen(false)} style={{
+                fontFamily: "'Inter', sans-serif", fontSize: 15, fontWeight: 500,
+                color: '#94A3B8', textDecoration: 'none',
+              }}>{l.label}</a>
             ))}
-            <button onClick={() => { onContactClick(); setOpen(false); }}
-              className="w-full mt-2 py-2.5 rounded bg-gold text-ink text-sm font-semibold">
+            <button onClick={() => { onContactClick(); setOpen(false); }} className="btn-primary" style={{ marginTop: 4 }}>
               Book a Call
             </button>
           </div>

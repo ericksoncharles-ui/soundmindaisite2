@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         {/* Eyebrow */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 32 }}>
           <div style={{ height: 1, width: 36, backgroundColor: 'rgba(181,144,74,0.4)' }} />
-          <span className="eyebrow">Cut Through the Noise</span>
+          <span className="eyebrow">Decision Intelligence</span>
           <div style={{ height: 1, width: 36, backgroundColor: 'rgba(181,144,74,0.4)' }} />
         </div>
 

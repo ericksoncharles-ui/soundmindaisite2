@@ -59,6 +59,16 @@ const industries = [
     outcomes: ['Vendor & supplier diligence', 'Market research automation', 'Proposal & report generation'],
     description: 'You don\'t need an enterprise budget to benefit from AI. We work with boutique firms, independent advisors, and fast-growing teams who want enterprise-grade analysis without the enterprise overhead.',
   },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2h14c.55 0 1 .45 1 1v14c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1zm2 4h10M5 8h10M5 12h10M5 16h10" stroke="#B5904A" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    title: 'Legal & Compliance Teams',
+    outcomes: ['Contract analysis & review', 'Regulatory compliance monitoring', 'Risk identification & reporting'],
+    description: 'Accelerate document review and compliance workflows. Identify contract risks, flag regulatory changes, and maintain audit trails with precision—essential for in-house and external legal teams.',
+  },
 ];
 
 export const Industries: React.FC = () => {

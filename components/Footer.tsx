@@ -16,13 +16,6 @@ const COLS = [
     links: [{ label: 'Why Us', href: '#why-us' }],
     action: 'Contact',
   },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms',          href: '#' },
-    ],
-  },
 ];
 
 const linkStyle: React.CSSProperties = {
@@ -43,9 +36,9 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         {/* Top row */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '2fr 1fr 1fr 1fr',
+          gridTemplateColumns: '2fr 1fr 1fr',
           gap: 40,
-          marginBottom: 56,
+          marginBottom: 48,
         }} className="footer-grid">
 
           {/* Brand */}
@@ -104,15 +97,10 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
           ))}
         </div>
 
-        {/* Bottom row */}
+        {/* Bottom divider and copyright */}
         <div style={{
           borderTop: '1px solid #1C3050',
           paddingTop: 24,
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 12,
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -120,13 +108,6 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
             color: '#64748B',
           }}>
             © {new Date().getFullYear()} SoundMind AI. All rights reserved.
-          </p>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: 12,
-            color: '#1C3050',
-          }}>
-            AI for decisions that matter.
           </p>
         </div>
       </div>
@@ -138,6 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
           }
           .footer-grid > div:first-child {
             grid-column: 1 / -1;
+            margin-bottom: 24px;
           }
         }
         @media (max-width: 480px) {

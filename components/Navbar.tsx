@@ -46,7 +46,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         </a>
 
         {/* Desktop nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 36 }} className="hidden md:flex">
+        <nav style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 36,
+        }} className="desktop-nav">
           {LINKS.map(l => (
             <a key={l.label} href={l.href} style={{
               fontFamily: "'Inter', sans-serif",
@@ -65,15 +69,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         </nav>
 
         {/* CTA */}
-        <div className="hidden md:flex">
+        <div className="desktop-cta">
           <button onClick={onContactClick} className="btn-primary" style={{ padding: '9px 22px', fontSize: 13 }}>
             Book a Call
           </button>
         </div>
 
         {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden"
-          style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: 8 }}>
+        <button onClick={() => setOpen(!open)} className="mobile-toggle"
+          style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: 8, flexShrink: 0, display: 'none' }}>
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -94,6 +98,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           </div>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 767px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .desktop-cta {
+            display: none !important;
+          }
+          .mobile-toggle {
+            display: block !important;
+          }
+        }
+        @media (min-width: 768px) {
+          .mobile-toggle {
+            display: none !important;
+          }
+        }
+      `}</style>
     </header>
   );
 };

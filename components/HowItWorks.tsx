@@ -2,66 +2,59 @@ import React from 'react';
 
 const steps = [
   {
-    number: '01',
+    n: '1',
     title: 'Diagnose',
-    description:
-      'We map your existing workflows, data sources, and decision bottlenecks to identify exactly where AI creates leverage.',
+    description: 'We map your existing workflows, data sources, and decision bottlenecks. Identify where AI creates real leverage — and where it doesn\'t.',
   },
   {
-    number: '02',
+    n: '2',
     title: 'Design',
-    description:
-      'Custom AI systems are architected to integrate with your infrastructure—no rip-and-replace, no disruption.',
+    description: 'Custom architecture built around your infrastructure, your data, and your team\'s way of working. No rip-and-replace.',
   },
   {
-    number: '03',
+    n: '3',
     title: 'Deploy',
-    description:
-      'Iterative implementation with your team, with ongoing refinement until the system earns your trust.',
+    description: 'Iterative rollout with embedded support until the system earns the trust of the people using it — and proves it in production.',
   },
 ];
 
 export const HowItWorks: React.FC = () => {
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-navy-900">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="how-it-works" className="bg-primary py-28 md:py-36">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        <div className="max-w-2xl mb-20">
-          <span className="section-eyebrow">Process</span>
-          <h2 className="section-heading mt-3 mb-5">How It Works</h2>
-          <p className="section-subtext">
-            From first conversation to production deployment, a clear path with no surprises.
-          </p>
+        <div className="mb-16">
+          <span className="label">Process</span>
+          <h2 className="display mt-3" style={{ fontSize: 'clamp(1.875rem, 4vw, 2.75rem)' }}>
+            How We Work
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 relative">
-          {/* Connector line — desktop only */}
-          <div className="hidden md:block absolute top-[2.2rem] left-[calc(16.67%+1rem)] right-[calc(16.67%+1rem)] h-px bg-gradient-to-r from-gold/20 via-gold/40 to-gold/20" />
+        {/* Steps */}
+        <div className="divider" />
+        {steps.map((step, i) => (
+          <div key={i}
+            className="grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr_1.5fr] items-start gap-6 md:gap-12 py-10 border-b border-line group">
 
-          {steps.map((step, i) => (
-            <div key={i} className="relative flex flex-col md:items-start px-0 md:px-8 lg:px-12 pb-12 md:pb-0 first:pl-0 last:pr-0">
+            {/* Number */}
+            <div className="font-serif text-[2rem] md:text-[2.5rem] font-semibold text-navy-600
+                            group-hover:text-gold/40 transition-colors duration-300 leading-none pt-1 select-none">
+              {step.n}
+            </div>
 
-              {/* Step number bubble */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative z-10 flex items-center justify-center w-[4.5rem] h-[4.5rem] rounded-full border border-gold/30 bg-navy-800 shadow-lg shadow-navy-950/60">
-                  <span className="font-serif text-2xl font-bold text-gold/80">{step.number}</span>
-                </div>
-              </div>
-
-              <h3 className="font-serif text-2xl font-bold text-white mb-3">
+            {/* Title */}
+            <div className="md:border-r border-line md:pr-12">
+              <h3 className="font-serif text-2xl md:text-3xl font-semibold text-white leading-tight">
                 {step.title}
               </h3>
-              <p className="text-sm text-muted leading-relaxed max-w-xs">
-                {step.description}
-              </p>
-
-              {/* Mobile connector */}
-              {i < steps.length - 1 && (
-                <div className="md:hidden absolute left-9 top-[4.5rem] w-px h-full bg-gradient-to-b from-gold/30 to-transparent" />
-              )}
             </div>
-          ))}
-        </div>
+
+            {/* Description */}
+            <p className="col-start-2 md:col-start-auto text-[0.9375rem] text-muted leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

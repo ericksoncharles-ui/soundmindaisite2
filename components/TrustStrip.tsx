@@ -1,16 +1,28 @@
 import React from 'react';
 
+const CLIENTS = [
+  'Private Equity',
+  'Investment Banking',
+  'Asset Management',
+  'Management Consulting',
+  'Life Sciences',
+  'Legal & Compliance',
+];
+
 export const TrustStrip: React.FC = () => {
   return (
-    <section className="border-y border-navy-700/40 bg-navy-800/50 py-7">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-center gap-4">
-          <div className="hidden sm:block h-px w-16 bg-gradient-to-r from-transparent to-gold/40" />
-          <p className="text-center text-sm md:text-base font-medium tracking-wide text-muted">
-            Built for teams where the cost of a wrong decision is{' '}
-            <span className="text-cream font-semibold">measured in millions</span>
-          </p>
-          <div className="hidden sm:block h-px w-16 bg-gradient-to-l from-transparent to-gold/40" />
+    <section className="bg-secondary border-y border-line py-6">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+          <span className="label shrink-0">Serving</span>
+          {CLIENTS.map((c, i) => (
+            <React.Fragment key={c}>
+              <span className="text-[0.8125rem] font-medium text-muted tracking-wide">{c}</span>
+              {i < CLIENTS.length - 1 && (
+                <span className="hidden sm:block text-line select-none">·</span>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </section>

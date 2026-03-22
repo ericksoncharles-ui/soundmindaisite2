@@ -2,62 +2,82 @@ import React from 'react';
 
 const capabilities = [
   {
+    n: '01',
     title: 'AI-Powered Due Diligence',
-    description: 'Process thousands of documents in hours. Surface material risks and opportunities human reviewers miss.',
+    description: 'Process thousands of documents in hours. Surface material risks and opportunities that human reviewers routinely miss under time pressure.',
   },
   {
-    title: 'Decision Intelligence',
-    description: 'Model complex scenarios with real-time data to inform investment, operational, and strategic decisions.',
+    n: '02',
+    title: 'Decision Intelligence Systems',
+    description: 'Structured AI reasoning across complex, multi-variable decisions — investment theses, market entries, risk frameworks.',
   },
   {
+    n: '03',
     title: 'Workflow Automation',
-    description: 'Eliminate high-value analyst time spent on repetitive data gathering, formatting, and synthesis.',
+    description: 'Eliminate analyst hours spent on data gathering, synthesis, and formatting. Redeploy your best people to work that requires judgment.',
   },
   {
+    n: '04',
     title: 'Document & Compliance Analysis',
-    description: 'Extract, classify, and flag issues across contracts, filings, and regulatory documents with precision.',
+    description: 'Precision extraction, classification, and flagging across contracts, regulatory filings, and compliance documentation at scale.',
   },
   {
+    n: '05',
     title: 'Portfolio & Investment Insights',
-    description: 'Continuous monitoring and structured reporting across portfolio companies and market signals.',
+    description: 'Continuous monitoring and structured reporting across portfolio companies, market signals, and competitive dynamics.',
   },
   {
-    title: 'Custom Intelligence Systems',
-    description: 'Proprietary models and tooling built for your firm\'s specific data, language, and decision flows.',
+    n: '06',
+    title: 'Custom Intelligence Platforms',
+    description: 'Proprietary models and tooling built around your firm\'s data, domain language, and specific decision workflows.',
   },
 ];
 
 export const Capabilities: React.FC = () => {
   return (
-    <section id="services" className="py-24 md:py-32 bg-navy-900">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="services" className="bg-primary py-28 md:py-36">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        <div className="max-w-2xl mb-16">
-          <span className="section-eyebrow">What We Do</span>
-          <h2 className="section-heading mt-3 mb-5">Core Capabilities</h2>
-          <p className="section-subtext">
-            Every capability is designed for the precision, speed, and reliability
-            that high-stakes decisions demand.
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-0">
+          <div>
+            <span className="label">What We Do</span>
+            <h2 className="display mt-3" style={{ fontSize: 'clamp(1.875rem, 4vw, 2.75rem)' }}>
+              Core Capabilities
+            </h2>
+          </div>
+          <p className="body-lg md:text-right max-w-sm" style={{ fontSize: '0.9375rem' }}>
+            Every capability is built for precision, speed,<br className="hidden lg:block" />
+            and the reliability that high-stakes work demands.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {capabilities.map((cap, i) => (
-            <div
-              key={i}
-              className="group relative rounded-lg border border-navy-700/50 bg-navy-800/60 p-7
-                         transition-all duration-300 hover:border-gold/25 hover:-translate-y-0.5
-                         hover:shadow-xl hover:shadow-navy-950/50 overflow-hidden"
-            >
-              {/* Top gold line on hover */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gold/0 group-hover:bg-gold/50 transition-all duration-300 rounded-t-lg" />
+        {/* Divider */}
+        <div className="divider mt-10 mb-0" />
 
-              <h3 className="font-serif text-lg font-bold text-white mb-3 leading-snug">
-                {cap.title}
-              </h3>
-              <p className="text-sm text-muted leading-relaxed">
-                {cap.description}
-              </p>
+        {/* Grid — list style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 divide-y divide-line md:divide-y-0">
+          {capabilities.map((cap, i) => (
+            <div key={i}
+              className={`group flex gap-8 py-10 px-0 md:px-8 transition-colors duration-200
+                ${i % 2 === 0 ? 'md:border-r border-line' : ''}
+                ${i >= 2 ? 'md:border-t border-line' : ''}`}
+            >
+              {/* Number */}
+              <span className="shrink-0 font-serif text-[2.5rem] font-semibold leading-none
+                               text-navy-600 group-hover:text-gold/30 transition-colors duration-300 select-none mt-1">
+                {cap.n}
+              </span>
+
+              {/* Content */}
+              <div>
+                <h3 className="font-serif text-lg font-semibold text-white mb-2.5 leading-snug">
+                  {cap.title}
+                </h3>
+                <p className="text-[0.875rem] text-muted leading-relaxed">
+                  {cap.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

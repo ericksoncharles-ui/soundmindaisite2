@@ -2,80 +2,62 @@ import React from 'react';
 
 const industries = [
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-        <polyline points="16 7 22 7 22 13" />
-      </svg>
-    ),
     title: 'Financial Services',
-    description: 'Accelerate trading analysis, risk modelling, and regulatory reporting without adding headcount.',
+    outcomes: ['Risk model acceleration', 'Regulatory reporting', 'Market intelligence'],
+    description: 'AI systems that match the speed and rigor financial institutions require — built for live data environments and compliance-first workflows.',
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
     title: 'Private Equity & Investment',
-    description: 'Compress due diligence timelines and surface deal-critical insights across complex data rooms.',
+    outcomes: ['Due diligence compression', 'Deal sourcing signals', 'Portfolio monitoring'],
+    description: 'Compress weeks of diligence into days. Surface deal-critical insights across complex data rooms without adding headcount.',
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-      </svg>
-    ),
     title: 'Consulting & Advisory',
-    description: 'Deliver deeper market analysis and client insights in a fraction of the research time.',
+    outcomes: ['Research synthesis', 'Client deliverable acceleration', 'Competitive analysis'],
+    description: 'Deliver deeper analysis in less time. AI that augments your senior talent rather than replacing the judgment that clients pay for.',
   },
   {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
     title: 'Healthcare & Life Sciences',
-    description: 'Analyse clinical evidence, regulatory filings, and trial data to support critical medical decisions.',
+    outcomes: ['Clinical evidence review', 'Regulatory submission support', 'Safety signal detection'],
+    description: 'High-precision document analysis and decision support for environments where accuracy is measured against patient and business risk.',
   },
 ];
 
 export const Industries: React.FC = () => {
   return (
-    <section id="industries" className="py-24 md:py-32 bg-section-alt">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="industries" className="bg-secondary py-28 md:py-36">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        <div className="max-w-2xl mb-16">
-          <span className="section-eyebrow">Industries</span>
-          <h2 className="section-heading mt-3 mb-5">Who We Serve</h2>
-          <p className="section-subtext">
-            Purpose-built for sectors where the precision of a decision determines outcomes at scale.
-          </p>
+        <div className="mb-14">
+          <span className="label">Industries</span>
+          <h2 className="display mt-3" style={{ fontSize: 'clamp(1.875rem, 4vw, 2.75rem)' }}>
+            Who We Serve
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line rounded-lg overflow-hidden">
           {industries.map((ind, i) => (
-            <div
-              key={i}
-              className="group flex gap-6 rounded-lg border border-navy-700/50 bg-navy-900/60 p-8
-                         transition-all duration-300 hover:border-gold/25 hover:bg-navy-900/80
-                         hover:-translate-y-0.5 hover:shadow-xl hover:shadow-navy-950/50"
-            >
-              {/* Icon */}
-              <div className="flex-shrink-0 text-gold/70 group-hover:text-gold transition-colors duration-300 mt-0.5">
-                {ind.icon}
-              </div>
+            <div key={i} className="bg-secondary p-10 group hover:bg-navy-800 transition-colors duration-300">
 
-              {/* Content */}
-              <div>
-                <h3 className="font-serif text-xl font-bold text-white mb-2 leading-snug">
-                  {ind.title}
-                </h3>
-                <p className="text-sm text-muted leading-relaxed">
-                  {ind.description}
-                </p>
+              {/* Title */}
+              <h3 className="font-serif text-xl font-semibold text-white mb-4 leading-snug">
+                {ind.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-[0.875rem] text-muted leading-relaxed mb-7">
+                {ind.description}
+              </p>
+
+              {/* Outcome tags */}
+              <div className="flex flex-wrap gap-2">
+                {ind.outcomes.map(o => (
+                  <span key={o}
+                    className="text-[0.75rem] font-medium px-3 py-1 rounded-full border border-line
+                               text-muted group-hover:border-gold/20 group-hover:text-gold/70 transition-colors duration-300">
+                    {o}
+                  </span>
+                ))}
               </div>
             </div>
           ))}

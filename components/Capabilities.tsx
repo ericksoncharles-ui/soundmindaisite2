@@ -4,12 +4,12 @@ const capabilities = [
   {
     n: '01',
     title: 'AI-Powered Due Diligence',
-    description: 'Process thousands of documents in hours. Surface material risks and opportunities that human reviewers routinely miss under time pressure.',
+    description: 'Process thousands of documents in hours. Surface material risks and opportunities that human reviewers miss under time pressure.',
   },
   {
     n: '02',
     title: 'Decision Intelligence Systems',
-    description: 'Structured AI reasoning across complex, multi-variable decisions — investment theses, market entries, risk frameworks.',
+    description: 'Structured AI reasoning across complex, multi-variable decisions — investment theses, market entries, and risk frameworks.',
   },
   {
     n: '03',
@@ -35,53 +35,124 @@ const capabilities = [
 
 export const Capabilities: React.FC = () => {
   return (
-    <section id="services" className="bg-primary py-28 md:py-36">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="services" style={{ backgroundColor: '#091524', paddingTop: 104, paddingBottom: 104 }}>
+      <div className="wrap">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-0">
-          <div>
-            <span className="label">What We Do</span>
-            <h2 className="display mt-3" style={{ fontSize: 'clamp(1.875rem, 4vw, 2.75rem)' }}>
-              Core Capabilities
-            </h2>
-          </div>
-          <p className="body-lg md:text-right max-w-sm" style={{ fontSize: '0.9375rem' }}>
-            Every capability is built for precision, speed,<br className="hidden lg:block" />
-            and the reliability that high-stakes work demands.
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 56 }}>
+          <span className="eyebrow">What We Do</span>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(28px, 3.5vw, 42px)',
+            fontWeight: 600,
+            lineHeight: 1.12,
+            letterSpacing: '-0.015em',
+            color: '#ffffff',
+            maxWidth: 480,
+          }}>
+            Core Capabilities
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 16,
+            color: '#64748B',
+            lineHeight: 1.7,
+            maxWidth: 520,
+            marginTop: 4,
+          }}>
+            Every capability is built for precision, speed, and the reliability that high-stakes work demands.
           </p>
         </div>
 
         {/* Divider */}
-        <div className="divider mt-10 mb-0" />
+        <div style={{ borderTop: '1px solid #1C3050', marginBottom: 0 }} />
 
-        {/* Grid — list style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 divide-y divide-line md:divide-y-0">
+        {/* Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+        }}>
           {capabilities.map((cap, i) => (
-            <div key={i}
-              className={`group flex gap-8 py-10 px-0 md:px-8 transition-colors duration-200
-                ${i % 2 === 0 ? 'md:border-r border-line' : ''}
-                ${i >= 2 ? 'md:border-t border-line' : ''}`}
-            >
-              {/* Number */}
-              <span className="shrink-0 font-serif text-[2.5rem] font-semibold leading-none
-                               text-navy-600 group-hover:text-gold/30 transition-colors duration-300 select-none mt-1">
-                {cap.n}
-              </span>
-
-              {/* Content */}
-              <div>
-                <h3 className="font-serif text-lg font-semibold text-white mb-2.5 leading-snug">
-                  {cap.title}
-                </h3>
-                <p className="text-[0.875rem] text-muted leading-relaxed">
-                  {cap.description}
-                </p>
-              </div>
-            </div>
+            <CapabilityItem key={cap.n} cap={cap} index={i} total={capabilities.length} />
           ))}
         </div>
       </div>
     </section>
   );
 };
+
+interface CapItem { n: string; title: string; description: string; }
+
+function CapabilityItem({ cap, index, total }: { cap: CapItem; index: number; total: number }) {
+  const [hovered, setHovered] = React.useState(false);
+  const isRightCol = index % 2 === 1;
+  const isBottomRow = index >= total - 2;
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        padding: '36px 32px',
+        borderBottom: '1px solid #1C3050',
+        borderRight: isRightCol ? 'none' : '1px solid #1C3050',
+        transition: 'background-color 0.2s ease',
+        backgroundColor: hovered ? '#0A1928' : 'transparent',
+        position: 'relative',
+      }}
+    >
+      {/* Gold left accent on hover */}
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: 2,
+        height: hovered ? 48 : 0,
+        backgroundColor: '#B5904A',
+        transition: 'height 0.25s ease',
+        borderRadius: 1,
+      }} />
+
+      {/* Number badge */}
+      <div style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 28,
+        height: 28,
+        borderRadius: '50%',
+        border: '1px solid #1C3050',
+        fontFamily: "'Inter', sans-serif",
+        fontSize: 11,
+        fontWeight: 600,
+        color: hovered ? '#B5904A' : '#64748B',
+        marginBottom: 16,
+        transition: 'color 0.2s ease, border-color 0.2s ease',
+        borderColor: hovered ? 'rgba(181,144,74,0.3)' : '#1C3050',
+      }}>
+        {cap.n}
+      </div>
+
+      <h3 style={{
+        fontFamily: "'Playfair Display', serif",
+        fontSize: 18,
+        fontWeight: 600,
+        color: '#ffffff',
+        lineHeight: 1.3,
+        marginBottom: 10,
+      }}>
+        {cap.title}
+      </h3>
+
+      <p style={{
+        fontFamily: "'Inter', sans-serif",
+        fontSize: 14,
+        color: '#64748B',
+        lineHeight: 1.7,
+      }}>
+        {cap.description}
+      </p>
+    </div>
+  );
+}

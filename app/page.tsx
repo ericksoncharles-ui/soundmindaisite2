@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-navy-900">
+    <main style={{ minHeight: '100vh', backgroundColor: '#091524' }}>
       <Navbar onContactClick={handleContactClick} />
       <Hero onContactClick={handleContactClick} />
       <TrustStrip />

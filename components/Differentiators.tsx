@@ -21,46 +21,118 @@ const items = [
 
 export const Differentiators: React.FC = () => {
   return (
-    <section id="why-us" className="bg-secondary py-28 md:py-36">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+    <section id="why-us" style={{ backgroundColor: '#0E1D30', paddingTop: 104, paddingBottom: 104 }}>
+      <div className="wrap">
 
-        {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+        {/* Header — two-column */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 64,
+          marginBottom: 72,
+          alignItems: 'end',
+        }} className="diff-header">
           <div>
-            <span className="label">Why SoundMind AI</span>
-            <h2 className="display mt-3" style={{ fontSize: 'clamp(1.875rem, 4vw, 2.75rem)' }}>
+            <span className="eyebrow">Why SoundMind AI</span>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(28px, 3.5vw, 42px)',
+              fontWeight: 600,
+              lineHeight: 1.12,
+              letterSpacing: '-0.015em',
+              color: '#ffffff',
+              marginTop: 12,
+            }}>
               Different by design.
-              <br />
-              <span className="text-muted" style={{ fontSize: '0.65em', fontStyle: 'italic' }}>
-                Not by marketing.
-              </span>
             </h2>
           </div>
-          <div className="flex items-end">
-            <p className="body-lg" style={{ fontSize: '0.9375rem' }}>
-              The gap between a promising AI pilot and an AI system that actually changes how your
+          <div>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 16,
+              color: '#94A3B8',
+              lineHeight: 1.75,
+            }}>
+              The gap between a promising AI pilot and a system that actually changes how your
               firm makes decisions is execution. That&apos;s where most firms fail.
               That&apos;s where we specialize.
             </p>
           </div>
         </div>
 
-        {/* Items */}
-        <div className="divider" />
-        <div className="grid grid-cols-1 md:grid-cols-2 divide-y divide-line md:divide-y-0">
+        {/* Items grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          borderTop: '1px solid #1C3050',
+          borderLeft: '1px solid #1C3050',
+        }} className="diff-grid">
           {items.map((item, i) => (
-            <div key={i}
-              className={`py-10 md:px-8 ${i % 2 === 0 ? 'md:border-r border-line md:pl-0' : ''} ${i >= 2 ? 'md:border-t border-line' : ''}`}>
-              <h3 className="font-serif text-xl font-semibold text-white mb-3 leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-[0.875rem] text-muted leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+            <DiffItem key={item.title} item={item} index={i} />
           ))}
         </div>
+
+        <style>{`
+          @media (max-width: 767px) {
+            .diff-header { grid-template-columns: 1fr !important; gap: 24px !important; }
+            .diff-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
       </div>
     </section>
   );
 };
+
+interface DiffItemProps { item: { title: string; description: string }; index: number; }
+
+function DiffItem({ item }: DiffItemProps) {
+  const [hovered, setHovered] = React.useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        padding: '40px 36px',
+        borderRight: '1px solid #1C3050',
+        borderBottom: '1px solid #1C3050',
+        position: 'relative',
+        transition: 'background-color 0.2s ease',
+        backgroundColor: hovered ? '#0a1928' : 'transparent',
+      }}
+    >
+      {/* Gold left-border accent */}
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        top: 40,
+        bottom: 40,
+        width: 2,
+        backgroundColor: '#B5904A',
+        opacity: hovered ? 1 : 0,
+        transition: 'opacity 0.25s ease',
+        borderRadius: 1,
+      }} />
+
+      <h3 style={{
+        fontFamily: "'Playfair Display', serif",
+        fontSize: 20,
+        fontWeight: 600,
+        color: '#ffffff',
+        lineHeight: 1.25,
+        marginBottom: 12,
+      }}>
+        {item.title}
+      </h3>
+
+      <p style={{
+        fontFamily: "'Inter', sans-serif",
+        fontSize: 14,
+        color: '#64748B',
+        lineHeight: 1.75,
+      }}>
+        {item.description}
+      </p>
+    </div>
+  );
+}

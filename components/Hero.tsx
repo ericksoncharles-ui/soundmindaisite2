@@ -6,37 +6,65 @@ interface HeroProps { onContactClick: () => void; }
 
 export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-hero">
+    <section style={{
+      position: 'relative',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      backgroundColor: '#091524',
+    }}>
 
-      {/* Subtle grid */}
-      <div className="absolute inset-0 grid-overlay opacity-100 pointer-events-none" />
+      {/* Subtle grid texture */}
+      <div className="grid-texture" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.6,
+      }} />
 
-      {/* Radial vignette over grid */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 70% at 50% 50%, transparent 40%, #0A1628 100%)' }} />
+      {/* Top-center ambient glow */}
+      <div style={{
+        position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
+        width: 600, height: 480, pointerEvents: 'none',
+        background: 'radial-gradient(ellipse 100% 100% at 50% 0%, rgba(181,144,74,0.07) 0%, transparent 65%)',
+      }} />
 
-      {/* Top-center light source */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gold/20" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-48 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 100% 100% at 50% 0%, rgba(184,150,90,0.07) 0%, transparent 70%)' }} />
+      {/* Vignette edges */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 50%, rgba(4,13,25,0.6) 100%)',
+      }} />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-10 pt-32 pb-28 text-center">
+      <div className="wrap" style={{
+        position: 'relative', zIndex: 10,
+        paddingTop: 160, paddingBottom: 96,
+        textAlign: 'center',
+      }}>
 
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2.5 mb-10">
-          <div className="h-px w-8 bg-gold/50" />
-          <span className="label">Decision Intelligence</span>
-          <div className="h-px w-8 bg-gold/50" />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 32 }}>
+          <div style={{ height: 1, width: 36, backgroundColor: 'rgba(181,144,74,0.4)' }} />
+          <span className="eyebrow">Decision Intelligence</span>
+          <div style={{ height: 1, width: 36, backgroundColor: 'rgba(181,144,74,0.4)' }} />
         </div>
 
         {/* Headline */}
-        <h1 className="display mb-7"
-            style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>
-          AI Engineered for
-          <br />
+        <h1 style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(38px, 5.5vw, 66px)',
+          fontWeight: 600,
+          lineHeight: 1.07,
+          letterSpacing: '-0.02em',
+          color: '#ffffff',
+          marginBottom: 28,
+          maxWidth: 860,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}>
+          AI Engineered for<br />
           <span style={{
-            background: 'linear-gradient(135deg, #CCA96E 0%, #B8965A 40%, #9A7A44 100%)',
+            background: 'linear-gradient(135deg, #C9A35C 0%, #B5904A 50%, #9A7A44 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
@@ -45,44 +73,82 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           </span>
         </h1>
 
-        {/* Subline */}
-        <p className="body-lg mx-auto mb-12" style={{ maxWidth: '36rem' }}>
+        {/* Subheadline */}
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: 17,
+          fontWeight: 400,
+          color: '#94A3B8',
+          lineHeight: 1.75,
+          maxWidth: 560,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginBottom: 48,
+        }}>
           Purpose-built intelligence for financial services, private equity,
           and enterprise leaders navigating decisions where the margin for error is zero.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button onClick={onContactClick}
-            className="px-8 py-3.5 rounded bg-gold text-ink font-semibold text-sm
-                       hover:bg-gold-light transition-all duration-200 shadow-lg shadow-gold/10">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={onContactClick} className="btn-primary" style={{ padding: '13px 32px', fontSize: 14 }}>
             Book a Strategy Call
           </button>
-          <a href="#services"
-            className="px-8 py-3.5 rounded border border-navy-600 text-slate font-semibold text-sm
-                       hover:border-navy-500 hover:text-white transition-all duration-200">
+          <a href="#services" className="btn-secondary" style={{ padding: '13px 32px', fontSize: 14 }}>
             See Capabilities
           </a>
         </div>
 
         {/* Stats row */}
-        <div className="mt-20 pt-10 border-t border-line grid grid-cols-3 gap-px bg-line max-w-2xl mx-auto rounded overflow-hidden">
+        <div style={{
+          marginTop: 80,
+          paddingTop: 40,
+          borderTop: '1px solid #1C3050',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 1,
+          backgroundColor: '#1C3050',
+          maxWidth: 600,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          borderRadius: 6,
+          overflow: 'hidden',
+        }}>
           {[
-            { n: '10×',   label: 'Faster due diligence' },
-            { n: '98%',   label: 'Document accuracy' },
-            { n: '$0',    label: 'Cost of wrong decisions' },
+            { n: '10×',     label: 'Faster due diligence' },
+            { n: '98%',     label: 'Document accuracy rate' },
+            { n: '< 2 wks', label: 'Time to first deployment' },
           ].map(({ n, label }) => (
-            <div key={label} className="bg-navy-900 py-6 px-4">
-              <div className="font-serif text-2xl font-semibold text-white mb-1">{n}</div>
-              <div className="text-xs text-muted">{label}</div>
+            <div key={label} style={{
+              backgroundColor: '#091524',
+              padding: '24px 16px',
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 26,
+                fontWeight: 600,
+                color: '#ffffff',
+                marginBottom: 6,
+                letterSpacing: '-0.02em',
+              }}>{n}</div>
+              <div style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 12,
+                color: '#64748B',
+                letterSpacing: '0.01em',
+              }}>{label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 inset-x-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #0A1628, transparent)' }} />
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: 120,
+        pointerEvents: 'none',
+        background: 'linear-gradient(to top, #091524, transparent)',
+      }} />
     </section>
   );
 };

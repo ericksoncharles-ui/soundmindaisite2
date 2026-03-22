@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CLIENTS = [
+const SECTORS = [
   'Private Equity',
   'Investment Banking',
   'Asset Management',
@@ -11,15 +11,42 @@ const CLIENTS = [
 
 export const TrustStrip: React.FC = () => {
   return (
-    <section className="bg-secondary border-y border-line py-6">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
-          <span className="label shrink-0">Serving</span>
-          {CLIENTS.map((c, i) => (
-            <React.Fragment key={c}>
-              <span className="text-[0.8125rem] font-medium text-muted tracking-wide">{c}</span>
-              {i < CLIENTS.length - 1 && (
-                <span className="hidden sm:block text-line select-none">·</span>
+    <section style={{
+      backgroundColor: '#0E1D30',
+      borderTop: '1px solid #1C3050',
+      borderBottom: '1px solid #1C3050',
+      paddingTop: 20,
+      paddingBottom: 20,
+    }}>
+      <div className="wrap">
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px 0',
+        }}>
+          <span className="eyebrow" style={{ marginRight: 20, flexShrink: 0 }}>Built for</span>
+          {SECTORS.map((s, i) => (
+            <React.Fragment key={s}>
+              <span style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#64748B',
+                letterSpacing: '0.01em',
+                whiteSpace: 'nowrap',
+              }}>{s}</span>
+              {i < SECTORS.length - 1 && (
+                <span style={{
+                  display: 'inline-block',
+                  width: 1,
+                  height: 12,
+                  backgroundColor: '#1C3050',
+                  margin: '0 16px',
+                  verticalAlign: 'middle',
+                  flexShrink: 0,
+                }} />
               )}
             </React.Fragment>
           ))}

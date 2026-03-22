@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { Button } from './shared/Button';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -10,146 +9,133 @@ interface ContactModalProps {
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: '',
-  });
+  const [form, setForm]             = useState({ name: '', email: '', company: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess]       = useState(false);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  // Lock body scroll
+  useEffect(() => {
+    if (isOpen) document.body.style.overflow = 'hidden';
+    else        document.body.style.overflow = '';
+    return ()  => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // Close on Escape
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [isOpen, onClose]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
+    setSubmitting(true);
     setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setTimeout(() => {
-        setFormData({ name: '', email: '', company: '', message: '' });
-        setSubmitSuccess(false);
-        onClose();
-      }, 2000);
-    }, 500);
+      setSubmitting(false);
+      setSuccess(true);
+      setTimeout(() => { setSuccess(false); setForm({ name: '', email: '', company: '', message: '' }); onClose(); }, 2500);
+    }, 700);
   };
 
   if (!isOpen) return null;
 
+  const inputClass =
+    'w-full bg-navy-900 border border-navy-600/60 rounded-md px-4 py-2.5 text-sm text-white placeholder-muted/50 focus:outline-none focus:border-gold/60 transition-colors duration-200';
+
   return (
     <>
-      {/* Overlay */}
+      {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+        className="fixed inset-0 z-40 bg-navy-950/80 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
       />
 
       {/* Modal */}
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md mx-4 bg-navy-800 border border-navy-700 rounded-lg p-8 z-50 shadow-2xl animate-slide-in">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-cream hover:text-gold transition-colors"
-        >
-          <X size={24} />
-        </button>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-navy-800 border border-navy-600/50 rounded-xl shadow-2xl shadow-navy-950/80 animate-slide-in">
 
-        {submitSuccess ? (
-          <div className="text-center">
-            <h3 className="text-2xl font-serif font-bold text-gold mb-2">Thank You!</h3>
-            <p className="text-cream mb-4">We&apos;ll be in touch shortly.</p>
+          {/* Header */}
+          <div className="flex items-start justify-between p-6 pb-0">
+            <div>
+              <h2 className="font-serif text-2xl font-bold text-white">Get in Touch</h2>
+              <p className="text-sm text-muted mt-1">We&apos;ll respond within one business day.</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-1.5 text-muted hover:text-white transition-colors rounded-md"
+              aria-label="Close"
+            >
+              <X size={20} />
+            </button>
           </div>
-        ) : (
-          <>
-            <h3 className="text-2xl font-serif font-bold text-white mb-6">Get in Touch</h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-cream mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Your name"
-                />
+          {success ? (
+            <div className="p-8 text-center">
+              <div className="text-4xl mb-4">✓</div>
+              <h3 className="font-serif text-xl font-bold text-gold mb-2">Message Received</h3>
+              <p className="text-sm text-muted">We&apos;ll be in touch shortly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-cream mb-1.5">Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Your name"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-cream mb-1.5">Company</label>
+                  <input
+                    type="text"
+                    value={form.company}
+                    onChange={(e) => setForm({ ...form, company: e.target.value })}
+                    placeholder="Your firm"
+                    className={inputClass}
+                  />
+                </div>
               </div>
-
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-cream mb-2">
-                  Email
-                </label>
+                <label className="block text-xs font-medium text-cream mb-1.5">Email</label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   required
-                  className="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="your@email.com"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder="you@firm.com"
+                  className={inputClass}
                 />
               </div>
-
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-cream mb-2">
-                  Company
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors"
-                  placeholder="Your company"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-cream mb-2">
-                  Message
-                </label>
+                <label className="block text-xs font-medium text-cream mb-1.5">Message</label>
                 <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   rows={4}
-                  className="w-full bg-navy-900 border border-navy-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-gold transition-colors resize-none"
-                  placeholder="Tell us about your project..."
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  placeholder="Describe your challenge or what you're trying to solve..."
+                  className={`${inputClass} resize-none`}
                 />
               </div>
 
-              <Button
+              <button
                 type="submit"
-                variant="primary"
-                disabled={isSubmitting}
-                className="w-full"
+                disabled={submitting}
+                className="w-full py-3 rounded-md bg-gold text-navy-900 font-semibold text-sm
+                           hover:bg-gold-light hover:shadow-lg hover:shadow-gold/20 transition-all duration-300
+                           disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
+                {submitting ? 'Sending…' : 'Send Message'}
+              </button>
             </form>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </>
   );

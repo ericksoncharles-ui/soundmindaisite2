@@ -2,35 +2,35 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', className, children, ...props }, ref) => {
-    const baseClasses = 'font-semibold rounded-lg transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2';
+    const base =
+      'inline-flex items-center justify-center font-semibold rounded-md transition-all duration-300 cursor-pointer whitespace-nowrap';
 
-    const variantClasses = {
-      primary: 'bg-gold text-navy-900 hover:brightness-110 focus-visible:outline-gold',
-      secondary: 'border border-gold text-gold hover:bg-gold hover:text-navy-900 focus-visible:outline-gold',
+    const variants = {
+      primary:
+        'bg-gold text-navy-900 hover:bg-gold-light hover:shadow-lg hover:shadow-gold/20 hover:-translate-y-px active:translate-y-0',
+      secondary:
+        'border border-gold/60 text-gold hover:border-gold hover:bg-gold/8 hover:-translate-y-px active:translate-y-0',
+      ghost:
+        'text-cream hover:text-gold transition-colors',
     };
 
-    const sizeClasses = {
+    const sizes = {
       sm: 'px-4 py-2 text-sm',
-      md: 'px-6 py-3 text-base',
-      lg: 'px-8 py-4 text-lg',
+      md: 'px-6 py-2.5 text-sm',
+      lg: 'px-8 py-3.5 text-base',
     };
 
     return (
       <button
         ref={ref}
-        className={cn(
-          baseClasses,
-          variantClasses[variant],
-          sizeClasses[size],
-          className
-        )}
+        className={cn(base, variants[variant], sizes[size], className)}
         {...props}
       >
         {children}

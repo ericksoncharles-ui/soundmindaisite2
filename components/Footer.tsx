@@ -1,93 +1,82 @@
 import React from 'react';
-import { Container } from './shared/Container';
 
 interface FooterProps {
   onContactClick: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-navy-900 border-t border-navy-700 mt-20 py-12">
-      <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Logo */}
-          <div>
-            <div className="flex items-center space-x-1 mb-4">
-              <span className="text-xl font-serif font-bold text-white">SoundMind</span>
-              <span className="text-xl font-serif font-bold text-gold">AI</span>
+    <footer className="bg-navy-950 border-t border-navy-700/40">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-0.5 mb-4">
+              <span className="font-serif text-2xl font-bold text-white">SoundMind</span>
+              <span className="font-serif text-2xl font-bold text-gold">AI</span>
             </div>
-            <p className="text-cream text-sm">
-              AI built for decisions that matter.
+            <p className="text-sm text-muted leading-relaxed max-w-xs">
+              Decision intelligence for teams where the stakes demand more than generic AI.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Product */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Product</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#services" className="text-cream hover:text-gold transition-colors">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#how-it-works" className="text-cream hover:text-gold transition-colors">
-                  How It Works
-                </a>
-              </li>
-              <li>
-                <a href="#industries" className="text-cream hover:text-gold transition-colors">
-                  Industries
-                </a>
-              </li>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted mb-4">Product</p>
+            <ul className="space-y-3">
+              {[
+                { label: 'Services',     href: '#services' },
+                { label: 'How It Works', href: '#how-it-works' },
+                { label: 'Industries',   href: '#industries' },
+              ].map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className="text-sm text-muted hover:text-white transition-colors">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
-            <ul className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted mb-4">Company</p>
+            <ul className="space-y-3">
               <li>
-                <a href="#why-us" className="text-cream hover:text-gold transition-colors">
+                <a href="#why-us" className="text-sm text-muted hover:text-white transition-colors">
                   About
                 </a>
               </li>
               <li>
                 <button
                   onClick={onContactClick}
-                  className="text-cream hover:text-gold transition-colors"
+                  className="text-sm text-muted hover:text-white transition-colors"
                 >
                   Contact
                 </button>
               </li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold text-white mb-4">Legal</h4>
-            <ul className="space-y-2">
               <li>
-                <a href="#" className="text-cream hover:text-gold transition-colors">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-cream hover:text-gold transition-colors">
-                  Terms
+                <a href="#" className="text-sm text-muted hover:text-white transition-colors">
+                  Privacy Policy
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-navy-700 pt-8">
-          <p className="text-center text-cream text-sm">
-            &copy; 2024 SoundMind AI. All rights reserved.
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-navy-700/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted">
+            &copy; {year} SoundMind AI. All rights reserved.
+          </p>
+          <p className="text-xs text-muted/50 italic">
+            AI for decisions that matter.
           </p>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 };

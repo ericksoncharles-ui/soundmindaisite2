@@ -1,19 +1,18 @@
 import React from 'react';
-import { Container } from './shared/Container';
 
 export const TrustStrip: React.FC = () => {
   return (
-    <section className="bg-navy-900 border-y border-navy-700 py-8 md:py-12">
-      <Container>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <div className="w-12 h-px bg-gradient-to-r from-transparent to-gold hidden sm:block" />
-          <p className="text-center text-cream text-lg md:text-xl font-medium">
-            Built for teams making
-            <span className="text-gold mx-2 font-semibold">high-stakes decisions</span>
+    <section className="border-y border-navy-700/40 bg-navy-800/50 py-7">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-center gap-4">
+          <div className="hidden sm:block h-px w-16 bg-gradient-to-r from-transparent to-gold/40" />
+          <p className="text-center text-sm md:text-base font-medium tracking-wide text-muted">
+            Built for teams where the cost of a wrong decision is{' '}
+            <span className="text-cream font-semibold">measured in millions</span>
           </p>
-          <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold hidden sm:block" />
+          <div className="hidden sm:block h-px w-16 bg-gradient-to-l from-transparent to-gold/40" />
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

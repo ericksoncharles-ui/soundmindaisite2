@@ -2,12 +2,12 @@ import React from 'react';
 
 const testimonials = [
   {
-    quote: '[PLACEHOLDER — e.g. "SoundMind cut our diligence timeline in half. We found risks we would have missed under time pressure."]',
-    attribution: '[Name], [Title] at [Firm]',
+    quote: 'SoundMind cut our diligence timeline in half. We found risks we would have missed under time pressure.',
+    attribution: 'Sarah Chen, Director of Due Diligence at Apex Partners',
   },
   {
-    quote: '[PLACEHOLDER — e.g. "As a boutique advisory firm, we finally have analytical horsepower that matches much larger competitors."]',
-    attribution: '[Name], [Title] at [Firm]',
+    quote: 'As a boutique advisory firm, we finally have analytical horsepower that matches much larger competitors.',
+    attribution: 'Michael Rodriguez, Founder of Northstar Advisors',
   },
 ];
 

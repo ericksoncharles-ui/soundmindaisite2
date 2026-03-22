@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         {/* Eyebrow */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 32 }}>
           <div style={{ height: 1, width: 36, backgroundColor: 'rgba(181,144,74,0.4)' }} />
-          <span className="eyebrow">Decision Intelligence</span>
+          <span className="eyebrow">Cut Through the Noise</span>
           <div style={{ height: 1, width: 36, backgroundColor: 'rgba(181,144,74,0.4)' }} />
         </div>
 
@@ -62,14 +62,14 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           marginLeft: 'auto',
           marginRight: 'auto',
         }}>
-          AI Engineered for<br />
+          AI That<br />
           <span style={{
             background: 'linear-gradient(135deg, #C9A35C 0%, #B5904A 50%, #9A7A44 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            High-Stakes Decisions
+            Works the Way You Think
           </span>
         </h1>
 
@@ -85,7 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           marginRight: 'auto',
           marginBottom: 48,
         }}>
-          Purpose-built AI for teams that need answers fast — whether you're a solo analyst, a growing advisory firm, or a large financial institution.
+          Built for analysts, advisors, and dealmakers who need rigorous answers fast — without the complexity, the overhead, or the wait.
         </p>
 
         {/* CTAs */}

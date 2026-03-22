@@ -8,92 +8,82 @@ export const Logo: React.FC<LogoProps> = ({ size = 56 }) => {
   return (
     <svg
       width={size}
-      height={size}
-      viewBox="0 0 200 240"
-      fill="none"
+      height="auto"
+      viewBox="0 0 680 520"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Main sail outline - left curve */}
+      {/* Main sail */}
       <path
-        d="M 100 30 Q 85 60 82 110 Q 80 140 85 160"
-        stroke="#3a3a3a"
-        strokeWidth="3.5"
-        strokeLinecap="round"
+        d="M340 60 C338 120, 290 220, 240 310 C280 295, 350 280, 390 290 Z"
         fill="none"
-      />
-
-      {/* Main sail outline - right curve */}
-      <path
-        d="M 100 30 Q 125 65 135 120 Q 138 145 132 160"
-        stroke="#3a3a3a"
-        strokeWidth="3.5"
+        stroke="#3d3d3d"
+        strokeWidth="2"
         strokeLinecap="round"
-        fill="none"
+        strokeLinejoin="round"
       />
-
-      {/* Inner sail line - left */}
+      {/* Inner sail lines */}
       <path
-        d="M 100 40 Q 90 70 88 120 Q 87 145 90 165"
-        stroke="#3a3a3a"
+        d="M340 60 C336 130, 310 230, 290 300"
+        fill="none"
+        stroke="#3d3d3d"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M340 60 C342 130, 360 230, 375 288"
+        fill="none"
+        stroke="#3d3d3d"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* Jib sail */}
+      <path
+        d="M340 110 C360 160, 390 230, 400 290 C375 285, 355 270, 340 260 Z"
+        fill="none"
+        stroke="#3d3d3d"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Hull top curve */}
+      <path
+        d="M210 310 C240 295, 300 285, 340 285 C380 285, 420 295, 450 310"
+        fill="none"
+        stroke="#3d3d3d"
         strokeWidth="2.5"
         strokeLinecap="round"
-        fill="none"
       />
-
-      {/* Inner sail line - right */}
+      {/* Hull bottom curve */}
       <path
-        d="M 100 40 Q 120 75 128 125 Q 130 150 125 165"
-        stroke="#3a3a3a"
-        strokeWidth="2.5"
-        strokeLinecap="round"
+        d="M215 322 C245 308, 305 298, 340 298 C375 298, 418 308, 448 322"
         fill="none"
-      />
-
-      {/* Mast - vertical center line */}
-      <line
-        x1="100"
-        y1="30"
-        x2="100"
-        y2="170"
-        stroke="#3a3a3a"
+        stroke="#3d3d3d"
         strokeWidth="2"
         strokeLinecap="round"
       />
-
-      {/* Hull - curved left side */}
+      {/* Wave 1 (dark) */}
       <path
-        d="M 85 165 Q 80 175 85 180"
-        stroke="#3a3a3a"
-        strokeWidth="3"
-        strokeLinecap="round"
+        d="M165 348 C200 336, 240 358, 280 346 C320 334, 360 356, 400 344 C430 335, 460 340, 500 348"
         fill="none"
+        stroke="#3d3d3d"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
-
-      {/* Hull - curved right side */}
+      {/* Wave 2 (blue) */}
       <path
-        d="M 132 165 Q 138 175 132 180"
-        stroke="#3a3a3a"
-        strokeWidth="3"
-        strokeLinecap="round"
+        d="M155 368 C195 354, 238 376, 282 362 C326 348, 368 372, 410 358 C440 348, 474 354, 510 364"
         fill="none"
+        stroke="#4a90d9"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
-
-      {/* Water waves - blue accent wave 1 */}
+      {/* Wave 3 (blue) */}
       <path
-        d="M 60 190 Q 80 185 100 190 Q 120 195 140 190"
-        stroke="#4a90e2"
-        strokeWidth="3"
-        strokeLinecap="round"
+        d="M170 386 C205 374, 245 392, 285 380 C325 368, 365 388, 405 376 C435 368, 465 372, 498 380"
         fill="none"
-      />
-
-      {/* Water waves - blue accent wave 2 */}
-      <path
-        d="M 55 205 Q 80 198 105 205 Q 130 212 150 205"
-        stroke="#4a90e2"
-        strokeWidth="3"
+        stroke="#4a90d9"
+        strokeWidth="2"
         strokeLinecap="round"
-        fill="none"
       />
     </svg>
   );

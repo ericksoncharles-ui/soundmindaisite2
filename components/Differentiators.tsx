@@ -53,9 +53,9 @@ export const Differentiators: React.FC = () => {
               color: '#94A3B8',
               lineHeight: 1.75,
             }}>
-              The gap between a promising AI pilot and a system that actually changes how your
-              firm makes decisions is execution. That&apos;s where most firms fail.
-              That&apos;s where we specialize.
+              Most firms have tried AI. Most pilots don&apos;t survive contact with real workflows,
+              real data, and real deadlines. That gap between promising and production-ready is
+              exactly where we work.
             </p>
           </div>
         </div>

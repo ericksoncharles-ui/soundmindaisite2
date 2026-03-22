@@ -4,59 +4,72 @@ interface LogoProps {
   size?: number;
 }
 
-export const Logo: React.FC<LogoProps> = ({ size = 32 }) => {
+export const Logo: React.FC<LogoProps> = ({ size = 48 }) => {
   return (
     <svg
       width={size}
-      height={size}
-      viewBox="0 0 200 150"
+      height={size * 0.6}
+      viewBox="0 0 400 240"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="waveGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" stopColor="#2D1B47" />
+          <stop offset="40%" stopColor="#5C3D6F" />
+          <stop offset="70%" stopColor="#C9A958" />
+          <stop offset="100%" stopColor="#D4AF37" />
+        </linearGradient>
+        <linearGradient id="sailGradient" x1="100%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#D4AF37" />
-          <stop offset="100%" stopColor="#6B3F5F" />
+          <stop offset="60%" stopColor="#A0876B" />
+          <stop offset="100%" stopColor="#5C3D6F" />
         </linearGradient>
       </defs>
 
-      {/* Heartbeat/Wave line */}
+      {/* Heartbeat/Wave line - left side */}
       <path
-        d="M 10 75 Q 20 75 25 65 Q 30 55 35 75 L 45 75 Q 50 75 52 70 Q 54 65 56 75 L 65 75"
-        stroke="url(#logoGradient)"
-        strokeWidth="4"
+        d="M 20 120 L 40 120 Q 50 120 55 105 Q 60 90 65 120 L 80 120 Q 90 120 95 110 Q 100 100 105 120 L 130 120"
+        stroke="url(#waveGradient)"
+        strokeWidth="8"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
       />
 
-      {/* Right side geometric shape */}
+      {/* Sail/Triangle shape - right side */}
       <path
-        d="M 100 30 Q 130 50 130 90 Q 130 110 100 130"
-        stroke="url(#logoGradient)"
-        strokeWidth="5"
+        d="M 200 40 L 280 120 L 240 200"
+        stroke="url(#sailGradient)"
+        strokeWidth="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+
+      {/* Bottom line of sail */}
+      <path
+        d="M 140 190 L 280 190"
+        stroke="url(#sailGradient)"
+        strokeWidth="10"
         strokeLinecap="round"
         fill="none"
       />
 
-      {/* Bottom right line */}
-      <path
-        d="M 70 115 L 150 115"
-        stroke="url(#logoGradient)"
-        strokeWidth="5"
-        strokeLinecap="round"
-        fill="none"
-      />
+      {/* Molecular/Neural nodes */}
+      {/* Center node */}
+      <circle cx="220" cy="110" r="8" fill="#D4AF37" />
+      {/* Top left node */}
+      <circle cx="190" cy="80" r="6" fill="#C9A958" />
+      {/* Right node */}
+      <circle cx="260" cy="95" r="7" fill="#D4AF37" />
+      {/* Bottom node */}
+      <circle cx="230" cy="145" r="6" fill="#A0876B" />
 
-      {/* Center nodes/dots for AI concept */}
-      <circle cx="110" cy="55" r="3.5" fill="#D4AF37" />
-      <circle cx="120" cy="70" r="3.5" fill="#D4AF37" />
-      <circle cx="105" cy="75" r="3.5" fill="#D4AF37" />
-
-      {/* Connecting lines between nodes */}
-      <line x1="110" y1="55" x2="120" y2="70" stroke="#D4AF37" strokeWidth="2" opacity="0.6" />
-      <line x1="110" y1="55" x2="105" y2="75" stroke="#D4AF37" strokeWidth="2" opacity="0.6" />
-      <line x1="120" y1="70" x2="105" y2="75" stroke="#D4AF37" strokeWidth="2" opacity="0.6" />
+      {/* Connection lines */}
+      <line x1="220" y1="110" x2="190" y2="80" stroke="#D4AF37" strokeWidth="2" opacity="0.7" />
+      <line x1="220" y1="110" x2="260" y2="95" stroke="#D4AF37" strokeWidth="2" opacity="0.7" />
+      <line x1="220" y1="110" x2="230" y2="145" stroke="#C9A958" strokeWidth="2" opacity="0.7" />
     </svg>
   );
 };

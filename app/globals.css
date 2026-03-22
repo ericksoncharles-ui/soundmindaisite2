@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0F1929;
+  color: #FFFFFF;
+  font-family: var(--font-inter);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A2540;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E5C158;
+}
+
+/* Selection */
+::selection {
+  background-color: #D4AF37;
+  color: #0F1929;
+}
+
+/* Smooth transitions */
+button,
+a {
+  transition: all 0.3s ease-out;
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.section-title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #FFFFFF;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+}
+
+.fade-in-on-scroll {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+/* Stagger animation for multiple elements */
+.stagger {
+  animation-delay: var(--stagger-delay, 0s);
+}

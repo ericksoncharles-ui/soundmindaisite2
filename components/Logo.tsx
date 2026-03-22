@@ -4,66 +4,52 @@ interface LogoProps {
   size?: number;
 }
 
-export const Logo: React.FC<LogoProps> = ({ size = 64 }) => {
+export const Logo: React.FC<LogoProps> = ({ size = 56 }) => {
   return (
     <svg
       width={size}
-      height={size * 0.7}
-      viewBox="0 0 480 340"
+      height={size}
+      viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Heartbeat/Wave line - left side */}
+      {/* Main sail - clean geometric triangle */}
       <path
-        d="M 20 165 L 55 165 Q 70 165 78 150 Q 85 135 100 165 L 125 165 Q 140 165 148 152 Q 155 140 165 165 L 195 165"
-        stroke="#ffffff"
-        strokeWidth="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
+        d="M 50 15 L 85 75 L 50 75 Z"
+        fill="#ffffff"
       />
 
-      {/* Sailboat shape - right side */}
-      {/* Main sail - curved triangle */}
+      {/* Mast */}
+      <line x1="50" y1="15" x2="50" y2="75" stroke="#ffffff" strokeWidth="2.5" />
+
+      {/* Hull/Boat body - subtle curved bottom */}
       <path
-        d="M 260 60 Q 310 100 310 180 L 260 260"
+        d="M 35 75 L 65 75"
         stroke="#ffffff"
-        strokeWidth="12"
+        strokeWidth="2.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
       />
 
-      {/* Mast/left edge of sail */}
+      {/* Water wave lines - suggest motion and flow */}
       <path
-        d="M 260 60 L 260 260"
+        d="M 20 82 Q 25 80 30 82 T 40 82"
         stroke="#ffffff"
-        strokeWidth="12"
+        strokeWidth="1.8"
         strokeLinecap="round"
         fill="none"
+        opacity="0.7"
       />
-
-      {/* Hull/bottom line */}
       <path
-        d="M 195 265 L 310 265"
+        d="M 60 82 Q 65 80 70 82 T 80 82"
         stroke="#ffffff"
-        strokeWidth="12"
+        strokeWidth="1.8"
         strokeLinecap="round"
         fill="none"
+        opacity="0.7"
       />
 
-      {/* Molecular/Neural nodes inside sail */}
-      {/* Center node */}
-      <circle cx="285" cy="130" r="9" fill="#ffffff" />
-      {/* Upper left node */}
-      <circle cx="265" cy="110" r="7" fill="#ffffff" />
-      {/* Right node */}
-      <circle cx="305" cy="155" r="8" fill="#ffffff" />
-
-      {/* Connection lines between nodes */}
-      <line x1="285" y1="130" x2="265" y2="110" stroke="#ffffff" strokeWidth="2.5" opacity="0.8" />
-      <line x1="285" y1="130" x2="305" y2="155" stroke="#ffffff" strokeWidth="2.5" opacity="0.8" />
-      <line x1="265" y1="110" x2="305" y2="155" stroke="#ffffff" strokeWidth="2.5" opacity="0.8" />
+      {/* Small accent - AI node suggestion (subtle) */}
+      <circle cx="60" cy="40" r="2" fill="#ffffff" opacity="0.8" />
     </svg>
   );
 };

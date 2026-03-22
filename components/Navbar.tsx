@@ -34,8 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
       <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
 
         {/* Logo */}
-        <a href="#" style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 12 }}>
-          <Logo size={44} />
+        <a href="#" style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 14 }}>
+          <Logo size={56} />
           <span style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: 20,

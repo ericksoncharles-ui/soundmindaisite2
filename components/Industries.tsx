@@ -48,6 +48,17 @@ const industries = [
     outcomes: ['Clinical evidence review', 'Regulatory submission support', 'Safety signal detection'],
     description: 'High-precision document analysis and decision support for environments where accuracy is measured against patient and business risk.',
   },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 8V5C3 3.9 3.9 3 5 3h6M17 8v3M14 11h3M14 14h3" stroke="#B5904A" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="3" y="8" width="14" height="9" rx="1" stroke="#B5904A" strokeWidth="1.25" />
+      </svg>
+    ),
+    title: 'Growing Businesses & Advisors',
+    outcomes: ['Vendor & supplier diligence', 'Market research automation', 'Proposal & report generation'],
+    description: 'You don\'t need an enterprise budget to benefit from AI. We work with boutique firms, independent advisors, and fast-growing teams who want enterprise-grade analysis without the enterprise overhead.',
+  },
 ];
 
 export const Industries: React.FC = () => {

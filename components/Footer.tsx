@@ -101,14 +101,56 @@ export const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         <div style={{
           borderTop: '1px solid #1C3050',
           paddingTop: 24,
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 16,
         }}>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 12,
             color: '#64748B',
+            margin: 0,
           }}>
             © {new Date().getFullYear()} SoundMind AI. All rights reserved.
           </p>
+
+          {/* Contact & social */}
+          <div style={{
+            display: 'flex',
+            gap: 24,
+            alignItems: 'center',
+          }}>
+            <a
+              href="mailto:hello@soundmindai.com"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 12,
+                color: '#64748B',
+                textDecoration: 'none',
+                transition: 'color 0.15s ease',
+              }}
+              onMouseOver={e => (e.currentTarget.style.color = '#ffffff')}
+              onMouseOut={e => (e.currentTarget.style.color = '#64748B')}
+            >
+              hello@soundmindai.com
+            </a>
+            <a
+              href="#"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 12,
+                color: '#64748B',
+                textDecoration: 'none',
+                transition: 'color 0.15s ease',
+              }}
+              onMouseOver={e => (e.currentTarget.style.color = '#ffffff')}
+              onMouseOut={e => (e.currentTarget.style.color = '#64748B')}
+            >
+              LinkedIn →
+            </a>
+          </div>
         </div>
       </div>
 

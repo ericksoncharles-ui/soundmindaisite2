@@ -85,8 +85,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           marginRight: 'auto',
           marginBottom: 48,
         }}>
-          Purpose-built intelligence for financial services, private equity,
-          and enterprise leaders navigating decisions where the margin for error is zero.
+          Purpose-built AI for teams that need answers fast — whether you're a solo analyst, a growing advisory firm, or a large financial institution.
         </p>
 
         {/* CTAs */}
@@ -96,6 +95,9 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           </button>
           <a href="#services" className="btn-secondary" style={{ padding: '13px 32px', fontSize: 14 }}>
             See Capabilities
+          </a>
+          <a href="#sample-report" className="btn-secondary" style={{ padding: '13px 32px', fontSize: 14 }}>
+            Download a Sample Report
           </a>
         </div>
 
@@ -141,6 +143,20 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
             </div>
           ))}
         </div>
+
+        {/* Stats sourcing context */}
+        <p style={{
+          marginTop: 8,
+          fontFamily: "'Inter', sans-serif",
+          fontSize: 11,
+          color: '#64748B',
+          letterSpacing: '0.01em',
+          maxWidth: 600,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}>
+          Based on internal benchmarks across pilot engagements. Results vary by workflow and data complexity.
+        </p>
       </div>
 
       {/* Bottom fade */}

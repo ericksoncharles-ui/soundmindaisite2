@@ -1,10 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface CTASectionProps { onContactClick: () => void; }
 
 export const CTASection: React.FC<CTASectionProps> = ({ onContactClick }) => {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubmitted(true);
+      setEmail('');
+      setTimeout(() => setSubmitted(false), 4000);
+    }
+  };
   return (
     <section style={{
       backgroundColor: '#040D19',
@@ -77,6 +88,85 @@ export const CTASection: React.FC<CTASectionProps> = ({ onContactClick }) => {
           <button onClick={onContactClick} className="btn-secondary" style={{ padding: '14px 36px', fontSize: 14 }}>
             Contact Us
           </button>
+        </div>
+
+        {/* Email capture section */}
+        <div id="sample-report" style={{ marginTop: 64, paddingTop: 40, borderTop: '1px solid rgba(28, 48, 80, 0.6)' }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 14,
+            color: '#94A3B8',
+            marginBottom: 16,
+          }}>
+            Or get a sample report sent to your inbox:
+          </p>
+
+          {submitted ? (
+            <div style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 14,
+              color: '#B5904A',
+              fontWeight: 500,
+            }}>
+              Thanks! Check your inbox shortly.
+            </div>
+          ) : (
+            <form onSubmit={handleEmailSubmit} style={{ display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center', maxWidth: 400, marginLeft: 'auto', marginRight: 'auto', flexWrap: 'wrap' }}>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 14,
+                  padding: '10px 16px',
+                  border: '1px solid #1C3050',
+                  borderRadius: 4,
+                  backgroundColor: 'rgba(14, 29, 48, 0.5)',
+                  color: '#ffffff',
+                  minWidth: 200,
+                }}
+                onFocus={(e) => (e.currentTarget.style.borderColor = '#B5904A')}
+                onBlur={(e) => (e.currentTarget.style.borderColor = '#1C3050')}
+              />
+              <button
+                type="submit"
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  padding: '10px 20px',
+                  backgroundColor: 'transparent',
+                  color: '#B5904A',
+                  border: '1px solid #B5904A',
+                  borderRadius: 4,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(181,144,74,0.1)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+              >
+                Send Me the Report
+              </button>
+            </form>
+          )}
+
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 11,
+            color: '#64748B',
+            marginTop: 12,
+            letterSpacing: '0.01em',
+          }}>
+            No spam. Unsubscribe anytime.
+          </p>
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import { Hero } from '@/components/Hero';
 import { TrustStrip } from '@/components/TrustStrip';
 import { Capabilities } from '@/components/Capabilities';
 import { Industries } from '@/components/Industries';
+import { Testimonials } from '@/components/Testimonials';
 import { HowItWorks } from '@/components/HowItWorks';
 import { Differentiators } from '@/components/Differentiators';
 import { CTASection } from '@/components/CTASection';
@@ -30,6 +31,7 @@ export default function Home() {
       <TrustStrip />
       <Capabilities />
       <Industries />
+      <Testimonials />
       <HowItWorks />
       <Differentiators />
       <CTASection onContactClick={handleContactClick} />

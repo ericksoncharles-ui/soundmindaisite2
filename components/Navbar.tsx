@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface NavbarProps { onContactClick: () => void; }
 
@@ -33,7 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
       <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
 
         {/* Logo */}
-        <a href="#" style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <a href="#" style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Logo size={28} />
           <span style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: 20,

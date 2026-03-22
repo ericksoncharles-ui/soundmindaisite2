@@ -1,21 +1,26 @@
 import React from 'react';
+import { Target, Wrench, Zap, CheckCircle } from 'lucide-react';
 
 const items = [
   {
     title: 'Precision over hype',
     description: 'Every model choice is driven by accuracy requirements, not novelty. We test against your real data before anything touches production.',
+    icon: Target,
   },
   {
     title: 'Built for real-world conditions',
     description: 'Our systems run under pressure — with messy data, shifting requirements, and teams that have seen too many demos that never shipped.',
+    icon: Wrench,
   },
   {
     title: 'High-stakes focus',
     description: 'We only work on decisions where being wrong has real consequences. That constraint shapes everything — architecture, testing, deployment.',
+    icon: Zap,
   },
   {
     title: 'Strategy through to execution',
     description: 'We don\'t hand off a prototype. We stay through deployment, adoption, and the first time the system faces something it wasn\'t built for.',
+    icon: CheckCircle,
   },
 ];
 
@@ -83,10 +88,11 @@ export const Differentiators: React.FC = () => {
   );
 };
 
-interface DiffItemProps { item: { title: string; description: string }; index: number; }
+interface DiffItemProps { item: { title: string; description: string; icon: React.ComponentType<{ size: number; color: string }> }; index: number; }
 
 function DiffItem({ item }: DiffItemProps) {
   const [hovered, setHovered] = React.useState(false);
+  const IconComponent = item.icon;
 
   return (
     <div
@@ -113,6 +119,10 @@ function DiffItem({ item }: DiffItemProps) {
         transition: 'opacity 0.25s ease',
         borderRadius: 1,
       }} />
+
+      <div style={{ marginBottom: 16 }}>
+        <IconComponent size={24} color="#B5904A" />
+      </div>
 
       <h3 style={{
         fontFamily: "'Playfair Display', serif",

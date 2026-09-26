@@ -1,13 +1,8 @@
 'use client';
 
-import { useEffect, useState, type RefObject } from 'react';
-import { useScroll, useSpring, type MotionValue } from 'framer-motion';
-
-/** Scroll progress (0 to 1) through a tall scene, lightly smoothed for a cinematic feel. */
-export function useSceneProgress(ref: RefObject<HTMLElement | null>): MotionValue<number> {
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
-  return useSpring(scrollYProgress, { stiffness: 140, damping: 32, mass: 0.35, restDelta: 0.0005 });
-}
+import { useEffect, useState } from 'react';
+import type { ImageLoaderProps } from 'next/image';
+import type { Variants } from 'framer-motion';
 
 /** SSR-safe prefers-reduced-motion. Starts false so server and client markup match. */
 export function usePrefersReducedMotion(): boolean {
@@ -22,37 +17,29 @@ export function usePrefersReducedMotion(): boolean {
   return reduced;
 }
 
-/** Viewport width, updated on resize. Defaults to a desktop width during SSR. */
-export function useViewportWidth(): number {
-  const [w, setW] = useState(1280);
-  useEffect(() => {
-    const update = () => setW(window.innerWidth);
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
-  return w;
+/** Sizes Unsplash CDN images to the width next/image asks for. */
+export function unsplashLoader({ src, width, quality }: ImageLoaderProps): string {
+  return `${src}?auto=format&fit=crop&w=${width}&q=${quality ?? 70}`;
 }
 
-/** Deterministic PRNG so generated 3D layouts match between server and client. */
-export function seeded(seed: number) {
-  let a = seed;
-  return () => {
-    a |= 0; a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
+const enter: Variants = {
+  hidden: { opacity: 0, rotateX: 24, z: -200, y: 48 },
+  show: (i: number = 0) => ({
+    opacity: 1, rotateX: 0, z: 0, y: 0,
+    transition: { duration: 0.85, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
 
-/** Piecewise-linear interpolation helper for per-frame math inside useTransform callbacks. */
-export function lerpRange(v: number, input: number[], output: number[]): number {
-  if (v <= input[0]) return output[0];
-  for (let i = 1; i < input.length; i++) {
-    if (v <= input[i]) {
-      const t = (v - input[i - 1]) / (input[i] - input[i - 1]);
-      return output[i - 1] + t * (output[i] - output[i - 1]);
-    }
-  }
-  return output[output.length - 1];
+const settled: Variants = {
+  show: { opacity: 1, rotateX: 0, z: 0, y: 0, transition: { duration: 0 } },
+};
+
+/**
+ * Motion props for a block that tilts up out of depth when it scrolls into view.
+ * Reduced motion is only known after hydration, so it snaps hidden blocks to their final state.
+ */
+export function reveal(reduced: boolean, i = 0) {
+  return reduced
+    ? { variants: settled, initial: false as const, animate: 'show' as const }
+    : { variants: enter, custom: i, initial: 'hidden' as const, whileInView: 'show' as const, viewport: { once: true, amount: 0.2 } };
 }

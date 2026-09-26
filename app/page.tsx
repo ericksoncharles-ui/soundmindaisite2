@@ -6,14 +6,13 @@ import { Footer } from '@/components/Footer';
 import { ContactModal } from '@/components/ContactModal';
 import { Starfield } from '@/components/story/Starfield';
 import { ChapterRail } from '@/components/story/ChapterRail';
-import { SceneDive } from '@/components/story/SceneDive';
+import { Hero } from '@/components/story/Hero';
 import { SceneSignal } from '@/components/story/SceneSignal';
 import { SceneCapabilities } from '@/components/story/SceneCapabilities';
 import { SceneProcess } from '@/components/story/SceneProcess';
 import { SceneIndustries } from '@/components/story/SceneIndustries';
 import { SceneProof } from '@/components/story/SceneProof';
 import { SceneFinale } from '@/components/story/SceneFinale';
-import { StaticStory, StaticFinale } from '@/components/story/StaticStory';
 import { usePrefersReducedMotion } from '@/components/story/hooks';
 
 export default function Home() {
@@ -29,23 +28,13 @@ export default function Home() {
       <Navbar onContactClick={handleContactClick} />
       {!reduced && <ChapterRail />}
 
-      {reduced ? (
-        <StaticStory onContactClick={handleContactClick} />
-      ) : (
-        <>
-          <SceneDive onContactClick={handleContactClick} />
-          <SceneSignal />
-          <SceneCapabilities />
-          <SceneProcess />
-          <SceneIndustries />
-        </>
-      )}
-
+      <Hero onContactClick={handleContactClick} reduced={reduced} />
+      <SceneSignal reduced={reduced} />
+      <SceneCapabilities reduced={reduced} />
+      <SceneProcess reduced={reduced} />
+      <SceneIndustries reduced={reduced} />
       <SceneProof reduced={reduced} />
-
-      {reduced
-        ? <StaticFinale onContactClick={handleContactClick} />
-        : <SceneFinale onContactClick={handleContactClick} />}
+      <SceneFinale onContactClick={handleContactClick} reduced={reduced} />
 
       <Footer onContactClick={handleContactClick} />
       <ContactModal isOpen={isContactModalOpen} onClose={handleCloseModal} />

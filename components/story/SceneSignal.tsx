@@ -3,8 +3,9 @@
 import React, { useEffect, useRef } from 'react';
 import { animate, motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { Check, FileText } from 'lucide-react';
-import { BEATS, STATS, STATS_NOTE } from '@/lib/content';
+import { BEATS, SIGNAL_IMAGE, STATS, STATS_NOTE } from '@/lib/content';
 import { reveal } from './hooks';
+import { Photo } from './Photo';
 
 const EVIDENCE = [
   '12,408 documents read end to end',
@@ -32,8 +33,12 @@ export const SceneSignal: React.FC<{ reduced: boolean }> = ({ reduced }) => {
             </motion.div>
           ))}
         </div>
+      </div>
 
-        <div className="signal-grid">
+      {/* The library photo sits behind the brief and fades into the dark behind the copy. */}
+      <div className="signal-stage">
+        <Photo src={SIGNAL_IMAGE} className="signal-photo" sizes="(max-width: 960px) 100vw, 64vw" quality={65} />
+        <div className="wrap signal-grid">
           <motion.div className="signal-copy" {...reveal(reduced)}>
             <span className="eyebrow">From noise to signal</span>
             <h2 className="h2">Answers you can defend in the room.</h2>

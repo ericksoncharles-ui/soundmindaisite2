@@ -16,13 +16,14 @@ soundmindaisite2/
 │   ├── Footer.tsx          # Footer navigation
 │   ├── story/              # Homepage sections
 │   │   ├── hooks.ts        # Reduced motion, reveal-on-view motion props, Unsplash image loader
+│   │   ├── Photo.tsx       # Decorative photo box that drops out if its image fails to load
 │   │   ├── Starfield.tsx   # Fixed particle field that speeds up with scroll
 │   │   ├── ChapterRail.tsx # Side chapter navigation
 │   │   ├── Hero.tsx        # Full-bleed photo slideshow hero with Ken Burns motion
-│   │   ├── SceneSignal.tsx # "40,000 pages" beats, illustrative insight brief, stats
+│   │   ├── SceneSignal.tsx # "40,000 pages" beats, illustrative brief over a library photo, stats
 │   │   ├── SceneCapabilities.tsx # Capability card grid
-│   │   ├── SceneProcess.tsx      # Diagnose / Design / Deploy
-│   │   ├── SceneIndustries.tsx   # Industry card grid
+│   │   ├── SceneProcess.tsx      # Diagnose / Design / Deploy photo cards
+│   │   ├── SceneIndustries.tsx   # Industry photo cards
 │   │   ├── SceneProof.tsx        # Testimonials + tilt-card differentiators
 │   │   └── SceneFinale.tsx       # CTA over a photo backdrop, sample-report form
 │   └── shared/             # Button, Card, Container
@@ -94,14 +95,17 @@ All components are fully responsive with mobile-first approach.
 
 ## 🎯 Homepage
 
-The homepage is about seven screens long on desktop. Nothing is scroll-jacked: sections are
+The homepage is about eight screens long on desktop. Nothing is scroll-jacked: sections are
 ordinary page flow, and cards tilt up out of depth (framer-motion `whileInView`) as they arrive.
 
 1. **Hero** - full-bleed photo slideshow (data centers, financial markets, capital markets, renewables,
    commercial development) with a slow Ken Burns zoom, a navy color grade, and a pause control
 2. **The signal** - "40,000 pages. Three weeks. One clause. We find it." beats, then an illustrative
-   SoundMind brief that swings in beside the headline stats
-3. **Capabilities**, 4. **Process**, 5. **Industries** - card grids (swipeable rows on phones)
+   SoundMind brief that swings in over a library photo beside the headline stats
+3. **Capabilities** - card grid
+4. **Process** - Diagnose / Design / Deploy cards, each over a photo that sinks into navy behind the copy
+5. **Industries** - photo cards, the icon badge straddling the photo's lower edge
+   (process, industries, and the other card sets are swipeable rows on phones)
 6. **Why us** - sector marquee, testimonials, and mouse-tilt differentiator cards
 7. **Begin** - closing CTA over a parallax city photo, plus the sample-report form
 
@@ -110,11 +114,12 @@ Copy lives in `lib/content.ts`.
 
 ### Photos
 
-Hero and closing photos are listed in `lib/content.ts` (`HERO_SLIDES`, `FINALE_IMAGE`). They are
-[Unsplash License](https://unsplash.com/license) photos served from the Unsplash CDN, sized per device by
-`unsplashLoader` in `components/story/hooks.ts`. To swap one, replace its `src` with another
-`https://images.unsplash.com/photo-...` URL. A photo that fails to load drops out of the rotation
-and the navy backdrop shows instead.
+Every photo is listed in `lib/content.ts`: `HERO_SLIDES`, `SIGNAL_IMAGE`, the `photo` on each of
+`STEPS` and `INDUSTRIES`, and `FINALE_IMAGE`. They are [Unsplash License](https://unsplash.com/license)
+photos served from the Unsplash CDN, sized per device by `unsplashLoader` in `components/story/hooks.ts`,
+and given the same navy color grade in `app/globals.css` so shots from different photographers read as
+one set. To swap one, replace it with another `https://images.unsplash.com/photo-...` URL. A photo that
+fails to load drops out (of the rotation, for hero slides) and the navy backdrop shows instead.
 
 ## ✨ Features
 

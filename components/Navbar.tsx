@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 interface NavbarProps { onContactClick: () => void; }
 
 const LINKS = [
-  { label: 'Services',     href: '#services' },
-  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Process',      href: '#process' },
   { label: 'Industries',   href: '#industries' },
   { label: 'Why Us',       href: '#why-us' },
 ];
@@ -15,6 +16,7 @@ const LINKS = [
 export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
   const [open, setOpen]   = useState(false);
   const [solid, setSolid] = useState(false);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const fn = () => setSolid(window.scrollY > 40);
@@ -33,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
       <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
 
         {/* Logo */}
-        <a href="#" style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 14 }}>
+        <a href="#top" style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 14 }}>
           <span style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: 20,
@@ -81,6 +83,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
+
+      {/* Story progress */}
+      <motion.div aria-hidden style={{
+        position: 'absolute', left: 0, right: 0, bottom: -1, height: 1,
+        background: 'linear-gradient(90deg, #9A7A44, #C9A35C)',
+        transformOrigin: '0 50%', scaleX: scrollYProgress,
+      }} />
 
       {/* Mobile menu */}
       {open && (

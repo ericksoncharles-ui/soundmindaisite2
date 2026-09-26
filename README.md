@@ -11,21 +11,24 @@ soundmindaisite2/
 │   ├── page.tsx            # Home page with all sections
 │   └── globals.css         # Global styles and Tailwind
 ├── components/
-│   ├── Navbar.tsx          # Sticky navigation header
-│   ├── Hero.tsx            # Hero section with sailboat SVG
-│   ├── TrustStrip.tsx      # Trust/credibility statement
-│   ├── Capabilities.tsx    # Core capabilities grid
-│   ├── Industries.tsx      # Industry-specific cards
-│   ├── HowItWorks.tsx      # 3-step process flow
-│   ├── Differentiators.tsx # Why choose us section
-│   ├── CTASection.tsx      # Final call-to-action
+│   ├── Navbar.tsx          # Fixed navigation with scroll progress bar
 │   ├── ContactModal.tsx    # Contact form modal
 │   ├── Footer.tsx          # Footer navigation
-│   └── shared/
-│       ├── Button.tsx      # Reusable button component
-│       ├── Card.tsx        # Reusable card component
-│       └── Container.tsx   # Max-width container wrapper
+│   ├── story/              # Scrollytelling homepage scenes
+│   │   ├── hooks.ts        # Scroll progress, reduced motion, seeded layout helpers
+│   │   ├── Starfield.tsx   # Fixed particle field that speeds up with scroll
+│   │   ├── ChapterRail.tsx # Side chapter navigation
+│   │   ├── SceneDive.tsx   # Hero: camera dives through a 3D "data room"
+│   │   ├── SceneSignal.tsx # Illustrative insight brief + stats zoom
+│   │   ├── SceneCapabilities.tsx # Z-axis corridor of capability panels
+│   │   ├── SceneProcess.tsx      # Cover-flow Diagnose / Design / Deploy
+│   │   ├── SceneIndustries.tsx   # Rotating 3D ring of industries
+│   │   ├── SceneProof.tsx        # Testimonials + tilt-card differentiators
+│   │   ├── SceneFinale.tsx       # Zoom-out CTA with sonar rings
+│   │   └── StaticStory.tsx       # Reduced-motion fallback layout
+│   └── shared/             # Button, Card, Container
 ├── lib/
+│   ├── content.ts          # All homepage copy and data
 │   └── utils.ts            # Utility functions (cn, etc.)
 ├── public/
 │   └── svg/
@@ -90,18 +93,21 @@ Visit [http://localhost:3000](http://localhost:3000) to see the site in developm
 
 All components are fully responsive with mobile-first approach.
 
-## 🎯 Key Sections
+## 🎯 Homepage Story
 
-1. **Navbar** - Sticky navigation with mobile hamburger menu
-2. **Hero** - Large headline with CTAs and sailboat SVG graphic
-3. **Trust Strip** - Premium credibility statement
-4. **Capabilities** - 6 core services in responsive grid
-5. **Industries** - 4 target industry verticals
-6. **How It Works** - 3-step process visualization
-7. **Differentiators** - Why SoundMind AI is different
-8. **CTA Section** - Final conversion-focused call-to-action
-9. **Footer** - Navigation and links
-10. **Contact Modal** - Form overlay for lead capture
+The homepage is a scroll-driven story. Each scene is a tall scroll track with a
+sticky stage; scroll progress (framer-motion `useScroll`) drives a CSS 3D camera.
+
+1. **The data room** - the camera flies through the hero headline and a tunnel of documents ("40,000 pages. Three weeks. One clause.") to a glowing signal
+2. **The signal** - an illustrative SoundMind brief tilts in from depth, then the stats zoom toward the viewer
+3. **Capabilities** - six panels arranged along the Z axis; scrolling moves the camera through each one
+4. **Process** - Diagnose, Design, Deploy as a 3D cover-flow with a progress rail
+5. **Industries** - a rotating 3D ring of industry cards
+6. **Why us** - sector marquee, testimonials, and mouse-tilt differentiator cards
+7. **Begin** - the camera pulls back from the closing headline to the CTAs and sample-report form
+
+Visitors with `prefers-reduced-motion` get a static layout with the same content and anchors.
+Copy lives in `lib/content.ts`; scene timing lives in each `Scene*.tsx` file.
 
 ## ✨ Features
 

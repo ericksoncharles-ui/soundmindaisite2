@@ -3,22 +3,9 @@
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { DIFFERENTIATORS, SECTORS, TESTIMONIALS, type Differentiator } from '@/lib/content';
-
-const enter = {
-  hidden: { opacity: 0, rotateX: 28, z: -240, y: 60 },
-  show: { opacity: 1, rotateX: 0, z: 0, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const } },
-};
-
-const settled = {
-  show: { opacity: 1, rotateX: 0, z: 0, y: 0, transition: { duration: 0 } },
-};
+import { reveal } from './hooks';
 
 export const SceneProof: React.FC<{ reduced: boolean }> = ({ reduced }) => {
-  // Reduced motion is only known after hydration, so snap any hidden elements to their final state.
-  const motionProps = reduced
-    ? { variants: settled, initial: false as const, animate: 'show' as const }
-    : { variants: enter, initial: 'hidden' as const, whileInView: 'show' as const, viewport: { once: true, amount: 0.3 } };
-
   return (
     <section id="why-us" className="proof" aria-label="Why SoundMind AI">
       <div className="marquee" aria-label="Built for">
@@ -31,8 +18,8 @@ export const SceneProof: React.FC<{ reduced: boolean }> = ({ reduced }) => {
 
       <div className="wrap proof-inner">
         <div className="proof-quotes">
-          {TESTIMONIALS.map(t => (
-            <motion.figure key={t.name} className="quote" {...motionProps}>
+          {TESTIMONIALS.map((t, i) => (
+            <motion.figure key={t.name} className="quote" {...reveal(reduced, i)}>
               <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
               <figcaption><strong>{t.name}</strong><span>{t.role}</span></figcaption>
             </motion.figure>
@@ -51,8 +38,8 @@ export const SceneProof: React.FC<{ reduced: boolean }> = ({ reduced }) => {
         </div>
 
         <div className="diff-grid">
-          {DIFFERENTIATORS.map(d => (
-            <motion.div key={d.title} {...motionProps}>
+          {DIFFERENTIATORS.map((d, i) => (
+            <motion.div key={d.title} {...reveal(reduced, i % 2)}>
               <TiltCard item={d} reduced={reduced} />
             </motion.div>
           ))}

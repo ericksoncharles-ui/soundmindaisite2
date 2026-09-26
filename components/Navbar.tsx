@@ -58,13 +58,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
               fontFamily: "'Inter', sans-serif",
               fontSize: 13,
               fontWeight: 500,
-              color: '#64748B',
+              color: '#94A3B8',
               textDecoration: 'none',
               letterSpacing: '0.01em',
               transition: 'color 0.2s',
             }}
             onMouseOver={e => (e.currentTarget.style.color = '#fff')}
-            onMouseOut={e => (e.currentTarget.style.color = '#64748B')}>
+            onMouseOut={e => (e.currentTarget.style.color = '#94A3B8')}>
               {l.label}
             </a>
           ))}

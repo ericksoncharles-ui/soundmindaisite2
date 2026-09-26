@@ -14,18 +14,17 @@ soundmindaisite2/
 │   ├── Navbar.tsx          # Fixed navigation with scroll progress bar
 │   ├── ContactModal.tsx    # Contact form modal
 │   ├── Footer.tsx          # Footer navigation
-│   ├── story/              # Scrollytelling homepage scenes
-│   │   ├── hooks.ts        # Scroll progress, reduced motion, seeded layout helpers
+│   ├── story/              # Homepage sections
+│   │   ├── hooks.ts        # Reduced motion, reveal-on-view motion props, Unsplash image loader
 │   │   ├── Starfield.tsx   # Fixed particle field that speeds up with scroll
 │   │   ├── ChapterRail.tsx # Side chapter navigation
-│   │   ├── SceneDive.tsx   # Hero: camera dives through a 3D "data room"
-│   │   ├── SceneSignal.tsx # Illustrative insight brief + stats zoom
-│   │   ├── SceneCapabilities.tsx # Z-axis corridor of capability panels
-│   │   ├── SceneProcess.tsx      # Cover-flow Diagnose / Design / Deploy
-│   │   ├── SceneIndustries.tsx   # Rotating 3D ring of industries
+│   │   ├── Hero.tsx        # Full-bleed photo slideshow hero with Ken Burns motion
+│   │   ├── SceneSignal.tsx # "40,000 pages" beats, illustrative insight brief, stats
+│   │   ├── SceneCapabilities.tsx # Capability card grid
+│   │   ├── SceneProcess.tsx      # Diagnose / Design / Deploy
+│   │   ├── SceneIndustries.tsx   # Industry card grid
 │   │   ├── SceneProof.tsx        # Testimonials + tilt-card differentiators
-│   │   ├── SceneFinale.tsx       # Zoom-out CTA with sonar rings
-│   │   └── StaticStory.tsx       # Reduced-motion fallback layout
+│   │   └── SceneFinale.tsx       # CTA over a photo backdrop, sample-report form
 │   └── shared/             # Button, Card, Container
 ├── lib/
 │   ├── content.ts          # All homepage copy and data
@@ -93,21 +92,29 @@ Visit [http://localhost:3000](http://localhost:3000) to see the site in developm
 
 All components are fully responsive with mobile-first approach.
 
-## 🎯 Homepage Story
+## 🎯 Homepage
 
-The homepage is a scroll-driven story. Each scene is a tall scroll track with a
-sticky stage; scroll progress (framer-motion `useScroll`) drives a CSS 3D camera.
+The homepage is about seven screens long on desktop. Nothing is scroll-jacked: sections are
+ordinary page flow, and cards tilt up out of depth (framer-motion `whileInView`) as they arrive.
 
-1. **The data room** - the camera flies through the hero headline and a tunnel of documents ("40,000 pages. Three weeks. One clause.") to a glowing signal
-2. **The signal** - an illustrative SoundMind brief tilts in from depth, then the stats zoom toward the viewer
-3. **Capabilities** - six panels arranged along the Z axis; scrolling moves the camera through each one
-4. **Process** - Diagnose, Design, Deploy as a 3D cover-flow with a progress rail
-5. **Industries** - a rotating 3D ring of industry cards
+1. **Hero** - full-bleed photo slideshow (data centers, financial markets, capital markets, renewables,
+   commercial development) with a slow Ken Burns zoom, a navy color grade, and a pause control
+2. **The signal** - "40,000 pages. Three weeks. One clause. We find it." beats, then an illustrative
+   SoundMind brief that swings in beside the headline stats
+3. **Capabilities**, 4. **Process**, 5. **Industries** - card grids (swipeable rows on phones)
 6. **Why us** - sector marquee, testimonials, and mouse-tilt differentiator cards
-7. **Begin** - the camera pulls back from the closing headline to the CTAs and sample-report form
+7. **Begin** - closing CTA over a parallax city photo, plus the sample-report form
 
-Visitors with `prefers-reduced-motion` get a static layout with the same content and anchors.
-Copy lives in `lib/content.ts`; scene timing lives in each `Scene*.tsx` file.
+Visitors with `prefers-reduced-motion` get the same page with animations and slideshow autoplay off.
+Copy lives in `lib/content.ts`.
+
+### Photos
+
+Hero and closing photos are listed in `lib/content.ts` (`HERO_SLIDES`, `FINALE_IMAGE`). They are
+[Unsplash License](https://unsplash.com/license) photos served from the Unsplash CDN, sized per device by
+`unsplashLoader` in `components/story/hooks.ts`. To swap one, replace its `src` with another
+`https://images.unsplash.com/photo-...` URL. A photo that fails to load drops out of the rotation
+and the navy backdrop shows instead.
 
 ## ✨ Features
 

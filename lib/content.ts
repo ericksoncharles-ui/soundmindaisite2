@@ -8,7 +8,7 @@ import {
 export interface Chapter { id: string; label: string; }
 
 export const CHAPTERS: Chapter[] = [
-  { id: 'top',          label: 'The data room' },
+  { id: 'top',          label: 'Overview' },
   { id: 'signal',       label: 'The signal' },
   { id: 'capabilities', label: 'Capabilities' },
   { id: 'process',      label: 'Process' },
@@ -17,12 +17,25 @@ export const CHAPTERS: Chapter[] = [
   { id: 'contact',      label: 'Begin' },
 ];
 
-export const DOC_TITLES = [
-  'Credit Agreement', '10-K FY2025', 'Confidential Info Memo', 'Supplier MSA',
-  'Board Minutes Q3', 'Quality of Earnings', 'Cap Table', 'Lease Abstracts',
-  'Clinical Study Report', 'SEC Comment Letter', 'Customer Contracts', 'IP Schedule',
-  'Management Accounts', 'Employment Agreements', 'Insurance Policies', 'Tax Returns FY24',
-  'Litigation Summary', 'Vendor Diligence', 'Market Study', 'Revenue Schedule',
+export interface HeroSlide { label: string; caption: string; src: string; }
+
+// Unsplash License photos (free for commercial use), served from the Unsplash CDN.
+// Swap `src` for any images.unsplash.com/photo-... URL, or a local /public path.
+export const HERO_SLIDES: HeroSlide[] = [
+  { label: 'Data centers',           caption: 'Diligence on the infrastructure behind AI.',   src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31' },
+  { label: 'Financial markets',      caption: 'Signal from noise, while the market moves.',   src: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3' },
+  { label: 'Capital markets',        caption: 'Every filing, model, and memo, read.',         src: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f' },
+  { label: 'Renewables',             caption: 'Underwriting the energy transition.',          src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d' },
+  { label: 'Commercial development', caption: 'Sites, leases, and pro formas, cross-checked.', src: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5' },
+];
+
+export const FINALE_IMAGE = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab';
+
+export const BEATS = [
+  { eyebrow: 'The data room', title: '40,000 pages.', body: 'Contracts, filings, financials, minutes.' },
+  { eyebrow: 'The clock',     title: 'Three weeks.',  body: 'Before the decision gets made, either way.' },
+  { eyebrow: 'The risk',      title: 'One clause.',   body: 'Buried on page 3,412. Easy to miss.' },
+  { eyebrow: 'SoundMind AI',  title: 'We find it.',   body: 'Read everything. Cite everything.', gold: true },
 ];
 
 export const STATS = [

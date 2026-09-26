@@ -19,17 +19,20 @@ export const CHAPTERS: Chapter[] = [
 
 export interface HeroSlide { label: string; caption: string; src: string; }
 
-// Unsplash License photos (free for commercial use), served from the Unsplash CDN.
-// Swap `src` for any images.unsplash.com/photo-... URL, or a local /public path.
+// Every photo on the page is an Unsplash License photo (free for commercial use), served from the
+// Unsplash CDN. Swap any of them for another images.unsplash.com/photo-... URL.
 export const HERO_SLIDES: HeroSlide[] = [
   { label: 'Data centers',           caption: 'Diligence on the infrastructure behind AI.',   src: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31' },
   { label: 'Financial markets',      caption: 'Signal from noise, while the market moves.',   src: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3' },
-  { label: 'Capital markets',        caption: 'Every filing, model, and memo, read.',         src: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f' },
+  { label: 'Capital markets',        caption: 'Every filing, model, and memo, read.',         src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df' },
   { label: 'Renewables',             caption: 'Underwriting the energy transition.',          src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d' },
   { label: 'Commercial development', caption: 'Sites, leases, and pro formas, cross-checked.', src: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5' },
 ];
 
 export const FINALE_IMAGE = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab';
+
+/** Library shelves behind the illustrative brief: the 40,000 pages. */
+export const SIGNAL_IMAGE = 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570';
 
 export const BEATS = [
   { eyebrow: 'The data room', title: '40,000 pages.', body: 'Contracts, filings, financials, minutes.' },
@@ -58,23 +61,23 @@ export const CAPABILITIES: Capability[] = [
   { n: '06', icon: Boxes,        title: 'Custom Intelligence Platforms',   description: "Proprietary models and tooling built around your firm's data, domain language, and specific decision workflows." },
 ];
 
-export interface Step { n: string; title: string; description: string; }
+export interface Step { n: string; title: string; description: string; photo: string; }
 
 export const STEPS: Step[] = [
-  { n: '1', title: 'Diagnose', description: "We map your existing workflows, data sources, and decision bottlenecks. We identify where AI creates real leverage, and where it doesn't." },
-  { n: '2', title: 'Design',   description: "Custom architecture built around your infrastructure, your data, and your team's way of working. No rip-and-replace." },
-  { n: '3', title: 'Deploy',   description: 'Iterative rollout with embedded support until the system earns the trust of the people using it and proves it in production.' },
+  { n: '1', title: 'Diagnose', photo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40', description: "We map your existing workflows, data sources, and decision bottlenecks. We identify where AI creates real leverage, and where it doesn't." },
+  { n: '2', title: 'Design',   photo: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e',   description: "Custom architecture built around your infrastructure, your data, and your team's way of working. No rip-and-replace." },
+  { n: '3', title: 'Deploy',   photo: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c', description: 'Iterative rollout with embedded support until the system earns the trust of the people using it and proves it in production.' },
 ];
 
-export interface Industry { title: string; description: string; outcomes: string[]; icon: LucideIcon; }
+export interface Industry { title: string; description: string; outcomes: string[]; icon: LucideIcon; photo: string; }
 
 export const INDUSTRIES: Industry[] = [
-  { icon: Landmark,   title: 'Financial Services',            outcomes: ['Risk model acceleration', 'Regulatory reporting', 'Market intelligence'],                  description: 'AI systems that match the speed and rigor financial institutions require, built for live data environments and compliance-first workflows.' },
-  { icon: Briefcase,  title: 'Private Equity & Investment',   outcomes: ['Due diligence compression', 'Deal sourcing signals', 'Portfolio monitoring'],            description: 'Compress weeks of diligence into days. Surface deal-critical insights across complex data rooms without adding headcount.' },
-  { icon: Compass,    title: 'Consulting & Advisory',         outcomes: ['Research synthesis', 'Deliverable acceleration', 'Competitive analysis'],                description: 'Deliver deeper analysis in less time. AI that augments your senior talent rather than replacing the judgment clients pay for.' },
-  { icon: HeartPulse, title: 'Healthcare & Life Sciences',    outcomes: ['Clinical evidence review', 'Regulatory submissions', 'Safety signal detection'],         description: 'High-precision document analysis and decision support where accuracy is measured against patient and business risk.' },
-  { icon: Rocket,     title: 'Growing Businesses & Advisors', outcomes: ['Vendor diligence', 'Market research automation', 'Report generation'],                  description: 'Enterprise-grade analysis without the enterprise overhead, for boutique firms, independent advisors, and fast-growing teams.' },
-  { icon: Scale,      title: 'Legal & Compliance Teams',      outcomes: ['Contract review', 'Compliance monitoring', 'Risk reporting'],                            description: 'Accelerate document review and compliance workflows. Flag contract risks and regulatory changes, with audit trails built in.' },
+  { icon: Landmark,   photo: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f', title: 'Financial Services',            outcomes: ['Risk model acceleration', 'Regulatory reporting', 'Market intelligence'],                  description: 'AI systems that match the speed and rigor financial institutions require, built for live data environments and compliance-first workflows.' },
+  { icon: Briefcase,  photo: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf', title: 'Private Equity & Investment',   outcomes: ['Due diligence compression', 'Deal sourcing signals', 'Portfolio monitoring'],            description: 'Compress weeks of diligence into days. Surface deal-critical insights across complex data rooms without adding headcount.' },
+  { icon: Compass,    photo: 'https://images.unsplash.com/photo-1552664730-d307ca884978',   title: 'Consulting & Advisory',         outcomes: ['Research synthesis', 'Deliverable acceleration', 'Competitive analysis'],                description: 'Deliver deeper analysis in less time. AI that augments your senior talent rather than replacing the judgment clients pay for.' },
+  { icon: HeartPulse, photo: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69', title: 'Healthcare & Life Sciences',    outcomes: ['Clinical evidence review', 'Regulatory submissions', 'Safety signal detection'],         description: 'High-precision document analysis and decision support where accuracy is measured against patient and business risk.' },
+  { icon: Rocket,     photo: 'https://images.unsplash.com/photo-1497366216548-37526070297c', title: 'Growing Businesses & Advisors', outcomes: ['Vendor diligence', 'Market research automation', 'Report generation'],                  description: 'Enterprise-grade analysis without the enterprise overhead, for boutique firms, independent advisors, and fast-growing teams.' },
+  { icon: Scale,      photo: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f', title: 'Legal & Compliance Teams',      outcomes: ['Contract review', 'Compliance monitoring', 'Risk reporting'],                            description: 'Accelerate document review and compliance workflows. Flag contract risks and regulatory changes, with audit trails built in.' },
 ];
 
 export const SECTORS = [
